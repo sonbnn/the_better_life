@@ -1,0 +1,47 @@
+name: the_better_life
+description: A new Flutter project.
+
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=2.19.0 <3.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  #common
+  connectivity_plus: ^3.0.3
+  core:
+    git:
+      url: http://gitlab.onechain.game/nghialq/core.git
+      ref: dev
+  dio: ^4.0.6
+  provider: ^6.0.5
+  fluttertoast: ^8.2.1
+  platform_device_id: ^1.0.1
+  flutter_secure_storage: ^6.1.0
+  shared_preferences: ^2.1.0
+  intl: ^0.17.0
+  easy_localization: ^3.0.1 #locale
+  lottie: ^2.3.1
+  get_it: ^7.2.0
+  flutter_svg: ^1.1.6
+  #
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^2.0.0
+
+flutter:
+
+  uses-material-design: true
+
+  assets:
+    - assets/
+    - assets/images/
+    - assets/icons/
+    - assets/fonts/
+    - assets/json/

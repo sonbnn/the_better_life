@@ -1,0 +1,28 @@
+{
+  "watter": [
+    {
+      "iconSrc": "assets/icons/ic_watter_100.svg",
+      "amount": 100.0
+    },
+    {
+      "iconSrc": "assets/icons/ic_watter_150.svg",
+      "amount": 150.0
+    },
+    {
+      "iconSrc": "assets/icons/ic_watter_200.svg",
+      "amount": 200.0
+    },
+    {
+      "iconSrc": "assets/icons/ic_watter_250.svg",
+      "amount": 250.0
+    },
+    {
+      "iconSrc": "assets/icons/ic_watter_300.svg",
+      "amount": 300.0
+    },
+    {
+      "iconSrc": "assets/icons/ic_watter_350.svg",
+      "amount": 350.0
+    }
+  ]
+}
