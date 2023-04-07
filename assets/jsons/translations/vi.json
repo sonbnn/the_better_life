@@ -1,0 +1,23 @@
+{
+  "TXT_TEST": "Test Language",
+  "TXT_LOGIN": "Login",
+  "TXT_SIGNUP": "Sign up",
+  "TXT_CHOOSE_YOUR_GENDER": "Chọn giới tính của bạn!",
+  "TXT_CHOOSE_YOUR_WEIGHT": "Chọn cân nặng của bạn!",
+  "TXT_CHOOSE_YOUR_TIME_WAKE_UP": "Chọn thời gian thức dậy của bạn!",
+  "TXT_YOU_CHOOSE_TO_WAKE_UP_AT": "Bạn chọn thức dậy lúc:",
+  "TXT_YOU_CHOOSE_TO_SLEEP_AT": "Bạn chọn đi ngủ lúc:",
+  "TXT_RESELECT": "Chọn lại",
+  "TXT_MALE": "Nam giới",
+  "TXT_FEMALE": "Nữ giới",
+  "TXT_LET_GO": "Đi nào",
+  "TXT_DRINK_WATER": "Uống nước",
+  "TXT_TO_DAY": "Hôm nay",
+  "TXT_HISTORY": "Lịch sử",
+  "TXT_NULL_WATER_TODAY": "Hôm nay bạn không có bất kỳ hồ sơ uống nước nào, hãy uống nước và xác nhận lượng nước của bạn!",
+  "TXT_CONFIRM": "Xác nhận",
+  "TXT_CANCEL": "Hủy bỏ",
+  "TXT_ERR_CHANGE_WATER": "Vui lòng chọn lượng nước hoặc nhập lượng nước!",
+  "TXT_OR_ENTER_NUMBER": "Hoặc nhập số",
+  "TXT_CHOOSE_AMOUNT_WATER": "Chọn lượng nước bạn muốn"
+}

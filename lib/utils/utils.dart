@@ -2,7 +2,7 @@ import 'dart:math';
 
 import 'package:intl/intl.dart';
 import 'package:platform_device_id/platform_device_id.dart';
-import 'package:the_better_life/configs/constants.dart';
+import 'package:the_better_life/configs/constants/constants.dart';
 
 abstract class UtilService {
   static bool checkNeedAuthentication(String url) {

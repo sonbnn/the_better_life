@@ -3,6 +3,8 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
+import 'package:the_better_life/features/drink_water/providers/drink/drink_provider.dart';
+import 'package:the_better_life/features/drink_water/providers/page/page_provider.dart';
 import 'package:the_better_life/providers/common/connectivity_provider.dart';
 import 'package:the_better_life/providers/common/theme_provider.dart';
 import 'package:the_better_life/services/locator.dart';
@@ -39,12 +41,12 @@ class _MyAppState extends State<MyApp> {
         return GestureDetector(
           onTap: () {
             SystemChannels.textInput.invokeMethod('TextInput.hide');
-            FocusScope.of(context).requestFocus(new FocusNode());
+            FocusScope.of(context).requestFocus(FocusNode());
           },
           child: MaterialApp(
             title: 'My App',
             routes: RoutesConstants.routes,
-            initialRoute: RoutingNameConstants.HomeScreen,
+            initialRoute: RoutingNameConstants.SplashScreen,
             navigatorKey: injector.get<NavigationService>().navigatorKey,
             theme: manager.themeData,
             localizationsDelegates: context.localizationDelegates,
@@ -69,13 +71,16 @@ void main() async {
       providers: [
         ChangeNotifierProvider(create: (context) => ThemeManager()),
         ChangeNotifierProvider(create: (context) => ConnectivityProvider()),
+        ChangeNotifierProvider(create: (context) => PageProvider()),
+        //water
+        ChangeNotifierProvider(create: (context) => DrinkProvider()),
       ],
       child: EasyLocalization(
         supportedLocales: const [Locale('en'), Locale('vi')],
         path: "assets/jsons/translations",
         fallbackLocale: const Locale('en'),
         // startLocale: Locale(Platform.localeName.split('_')[0]),
-        startLocale: Locale('en'),
+        startLocale: const Locale('en'),
         child: MyApp(),
       ),
     ),

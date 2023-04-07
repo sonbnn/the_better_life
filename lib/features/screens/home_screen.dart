@@ -4,7 +4,7 @@ import 'package:the_better_life/utils/regex.dart';
 import 'package:the_better_life/widgets/buttons/button_shadow_out.dart';
 import 'package:the_better_life/widgets/container/container_shadow_common.dart';
 import 'package:the_better_life/widgets/container/container_shdow_inner.dart';
-import 'package:the_better_life/widgets/text_field/input_text_field.dart';
+import 'package:the_better_life/widgets/input/input_text_field.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -73,9 +73,6 @@ class _HomeScreenState extends State<HomeScreen> {
                     labelText: 'Label Text',
                     suffixIcon: GestureDetector(
                       behavior: HitTestBehavior.translucent,
-                      onTap: () async {
-                        print(2222222);
-                      },
                       child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 12),
                         child: Text(

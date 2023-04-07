@@ -18,6 +18,6 @@ class NavigationService {
   }
 
   void showToast(data) {
-    SnackbarBuilder.showSnackbar(content: data, status: false);
+    SnackBarBuilder.showSnackBar(content: data, status: false);
   }
 }

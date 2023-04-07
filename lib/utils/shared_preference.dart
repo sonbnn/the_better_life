@@ -2,8 +2,11 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:the_better_life/configs/styles/theme.dart';
+import 'package:the_better_life/features/drink_water/model/user.dart';
+import 'package:the_better_life/features/drink_water/model/watter_history.dart';
 
 class SharedPrefsService {
+  // common
   static void addLanguageCode(String code) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setString('language', code);
@@ -36,16 +39,6 @@ class SharedPrefsService {
   static Future setLanguages(Map languages) async {
     var prefs = await SharedPreferences.getInstance();
     prefs.setString('languages', jsonEncode(languages));
-  }
-
-  static Future setUser(Map user) async {
-    var prefs = await SharedPreferences.getInstance();
-    prefs.setString('user', jsonEncode(user));
-  }
-
-  static removeUser() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.remove('user');
   }
 
   static Future setAskingForUpdate(bool isOpen) async {
@@ -82,4 +75,68 @@ class SharedPrefsService {
     var prefs = await SharedPreferences.getInstance();
     prefs.setBool('AlreadyPassWord', status);
   }
+
+  // water
+  static Future<void> saveUserInfo(User user) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('userInfo', jsonEncode(user));
+  }
+
+  static Future<User> getUserInfo() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    Map<String, dynamic> userMap = {};
+    final String? info = prefs.getString('userInfo');
+    if (info != null) {
+      userMap = jsonDecode(info) as Map<String, dynamic>;
+    }
+    final User userInfo = User.fromJson(userMap);
+    return userInfo;
+  }
+
+  static void setAmountDrinkToday(double currentMilli) async {
+    var prefs = await SharedPreferences.getInstance();
+    await prefs.setDouble("amountDrinkToDay", currentMilli);
+  }
+
+  static Future<double> getAmountDrinkToday() async {
+    var prefs = await SharedPreferences.getInstance();
+    double? waterData = prefs.getDouble("amountDrinkToDay") ?? 0;
+    return waterData;
+  }
+
+
+  static Future<void> saveDayHistory(List<HistoryDay> historyDay) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('historyDay', jsonEncode(historyDay));
+  }
+
+  static Future<List<HistoryDay>> getDayHistory() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    final String? info = prefs.getString('historyDay');
+    final List<HistoryDay> historyDay = HistoryDay.decode(info ?? '');
+    return historyDay;
+  }
+
+  static Future<void> saveMonthHistory(List<HistoryMonth> historyMonth) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('monthHistory', jsonEncode(historyMonth));
+  }
+
+  static Future<List<HistoryMonth>> getMonthHistory() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    final String? info = prefs.getString('monthHistory');
+    final List<HistoryMonth> historyMonth = HistoryMonth.decode(info ?? '');
+    return historyMonth;
+  }
+
+  static Future<String> getCurrentDay() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.getString('currentDay') ?? 'true';
+  }
+
+  static Future setCurrentDay(String currentDay) async {
+    var prefs = await SharedPreferences.getInstance();
+    prefs.setString('currentDay', currentDay);
+  }
+  //
 }

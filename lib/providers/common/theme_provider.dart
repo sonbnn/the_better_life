@@ -11,7 +11,7 @@ class ThemeManager with ChangeNotifier {
 
   /// Use this method on UI to get selected theme.
   ThemeData? get themeData {
-    _themeData ??= appThemeData[AppTheme.dark];
+    _themeData ??= appThemeData[AppTheme.light];
     return _themeData;
   }
 

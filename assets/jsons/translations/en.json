@@ -1,0 +1,23 @@
+{
+  "TXT_TEST": "Test Language",
+  "TXT_LOGIN": "Login",
+  "TXT_SIGNUP": "Sign up",
+  "TXT_CHOOSE_YOUR_GENDER": "Choose your gender!",
+  "TXT_CHOOSE_YOUR_WEIGHT": "Choose your weight!",
+  "TXT_CHOOSE_YOUR_TIME_WAKE_UP": "Choose your wake up time!",
+  "TXT_YOU_CHOOSE_TO_WAKE_UP_AT": "You choose to wake up at:",
+  "TXT_YOU_CHOOSE_TO_SLEEP_AT": "You choose to sleep at:",
+  "TXT_RESELECT": "Reselect",
+  "TXT_MALE": "Male",
+  "TXT_FEMALE": "Female",
+  "TXT_LET_GO": "Let's go",
+  "TXT_DRINK_WATER": "Drink water",
+  "TXT_TO_DAY": "To day",
+  "TXT_HISTORY": "History",
+  "TXT_NULL_WATER_TODAY": "Today you don't have any water intake record, drink water and confirm your water intake!\n",
+  "TXT_CONFIRM": "Confirm",
+  "TXT_CANCEL": "Cancel",
+  "TXT_ERR_CHANGE_WATER": "Please select the amount of water or enter the amount of water!",
+  "TXT_OR_ENTER_NUMBER": "Or enter number",
+  "TXT_CHOOSE_AMOUNT_WATER": "Choose the amount of water you want"
+}

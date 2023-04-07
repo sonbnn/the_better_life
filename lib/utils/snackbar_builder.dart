@@ -4,8 +4,8 @@ import 'package:fluttertoast/fluttertoast.dart';
 
 final NavigationService navigationService = injector.get<NavigationService>();
 
-abstract class SnackbarBuilder {
-  static void showSnackbar({required String content, bool status = true, String? subContent, int? seconds}) {
+abstract class SnackBarBuilder {
+  static void showSnackBar({required String content, bool status = true, String? subContent, int? seconds}) {
     String _subContent = '';
     if (subContent != null) {
       _subContent = ': $subContent';

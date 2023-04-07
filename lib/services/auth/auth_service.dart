@@ -2,7 +2,7 @@ import 'package:core/core.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:the_better_life/configs/constants.dart';
+import 'package:the_better_life/configs/constants/constants.dart';
 import 'package:the_better_life/utils/secure_storage_service.dart';
 import 'package:the_better_life/utils/snackbar_builder.dart';
 
@@ -26,16 +26,16 @@ class AuthService {
       if (dataResult.data != null && dataResult.status) {
         TokenObj? token = TokenObj.fromJson(dataResult.data);
         await _secureStorage.setTokenObj(token);
-        SnackbarBuilder.showSnackbar(content: dataResult.message ?? '');
+        SnackBarBuilder.showSnackBar(content: dataResult.message ?? '');
         return true;
       } else {
         _secureStorage.removeToken();
-        SnackbarBuilder.showSnackbar(content: dataResult.message ?? '', status: false);
+        SnackBarBuilder.showSnackBar(content: dataResult.message ?? '', status: false);
       }
       return false;
     } catch (e) {
       print('AuthService login $e');
-      SnackbarBuilder.showSnackbar(content: 'MSG_ERROR_SYSTEM', status: false);
+      SnackBarBuilder.showSnackBar(content: 'MSG_ERROR_SYSTEM', status: false);
       return false;
     }
   }

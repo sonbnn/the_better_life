@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import 'package:the_better_life/configs/constants.dart';
+import 'package:the_better_life/configs/constants/constants.dart';
 import 'package:the_better_life/utils/snackbar_builder.dart';
 
 abstract class LoadingProcessBuilder {
