@@ -11,7 +11,7 @@ class WeightSliderInternal extends StatefulWidget {
   final ValueChanged<int> onChange;
   final double width;
 
-  WeightSliderInternal({
+  const WeightSliderInternal({
     Key? key,
     required this.minValue,
     required this.maxValue,

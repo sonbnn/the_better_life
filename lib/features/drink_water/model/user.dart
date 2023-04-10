@@ -3,18 +3,20 @@ class User {
   double? weight;
   String? wakeUpTime;
   String? bedTime;
-  String? birthDay;
+  double? age;
   double? recommendedMilli;
+  double? height;
 
-  User({this.gender, this.weight, this.wakeUpTime, this.bedTime, this.birthDay, this.recommendedMilli});
+  User({this.gender, this.weight, this.wakeUpTime, this.bedTime, this.age, this.recommendedMilli, this.height});
 
   User.fromJson(Map<String, dynamic> json) {
     gender = json['gender'];
     weight = json['weight'];
     wakeUpTime = json['wakeUpTime'];
     bedTime = json['bedTime'];
-    birthDay = json['birthDay'];
+    age = json['age'];
     recommendedMilli = json['recommendedMilli'];
+    height = json['height'];
   }
 
   Map<String, dynamic> toJson() {
@@ -23,13 +25,14 @@ class User {
     data['weight'] = weight;
     data['wakeUpTime'] = wakeUpTime;
     data['bedTime'] = bedTime;
-    data['birthDay'] = birthDay;
+    data['age'] = age;
     data['recommendedMilli'] = recommendedMilli;
+    data['height'] = height;
     return data;
   }
 
   @override
   String toString() {
-    return 'UserInfo{gender: $gender, weight: $weight, wakeUpTime: $wakeUpTime, bedTime: $bedTime, birthDay: $birthDay, recommendedMilli: $recommendedMilli}';
+    return 'UserInfo{gender: $gender, weight: $weight, wakeUpTime: $wakeUpTime, bedTime: $bedTime, age: $age, recommendedMilli: $recommendedMilli, height: $height}';
   }
 }

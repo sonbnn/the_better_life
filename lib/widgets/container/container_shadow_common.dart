@@ -12,7 +12,7 @@ class ContainerShadowCommon extends StatelessWidget {
   ContainerShadowCommon({
     Key? key,
     this.size,
-    this.child,
+    required this.child,
     this.radius,
     this.padding,
     this.margin,
@@ -26,8 +26,8 @@ class ContainerShadowCommon extends StatelessWidget {
       duration: const Duration(milliseconds: 250),
       padding: padding,
       margin: margin,
-      width: size?.width ?? 56,
-      height: size?.height ?? 56,
+      width: size?.width,
+      height: size?.height,
       alignment: Alignment.center,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(radius ?? 18),
@@ -47,7 +47,7 @@ class ContainerShadowCommon extends StatelessWidget {
           ),
         ],
       ),
-      child: child ?? const Icon(Icons.abc_outlined, color: Colors.black),
+      child: child,
     );
   }
 }

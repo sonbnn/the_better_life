@@ -1,7 +1,7 @@
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
-import 'package:the_better_life/features/drink_water/screens/home_water/home/widget/wave.dart';
+import 'package:the_better_life/features/drink_water/screens/home_water/widget/wave.dart';
 
 const double _twoPi = math.pi * 2.0;
 const double _epsilon = .001;
@@ -18,12 +18,7 @@ class LiquidCircularProgressIndicator extends ProgressIndicator {
     Animation<Color>? valueColor,
     this.center,
     this.direction = Axis.vertical,
-  }) : super(
-          key: key,
-          value: value,
-          backgroundColor: backgroundColor,
-          valueColor: valueColor,
-        ) {}
+  }) : super(key: key, value: value, backgroundColor: backgroundColor, valueColor: valueColor);
 
   Color _getBackgroundColor(BuildContext context) => backgroundColor ?? Theme.of(context).backgroundColor;
 
@@ -39,16 +34,10 @@ class _LiquidCircularProgressIndicatorState extends State<LiquidCircularProgress
     return ClipPath(
       clipper: _CircleClipper(),
       child: CustomPaint(
-        painter: _CirclePainter(
-          color: widget._getBackgroundColor(context),
-        ),
+        painter: _CirclePainter(color: widget._getBackgroundColor(context)),
         child: Stack(
           children: [
-            Wave(
-              value: widget.value,
-              color: widget._getValueColor(context),
-              direction: widget.direction,
-            ),
+            Wave(value: widget.value, color: widget._getValueColor(context), direction: widget.direction),
             if (widget.center != null) Center(child: widget.center),
           ],
         ),

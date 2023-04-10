@@ -1,4 +1,7 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:the_better_life/configs/constants/constant_water.dart';
 import 'package:the_better_life/features/drink_water/model/user.dart';
 import 'package:the_better_life/utils/shared_preference.dart';
@@ -6,7 +9,8 @@ import 'package:the_better_life/utils/shared_preference.dart';
 class UserProvider extends ChangeNotifier {
   User user = User();
   TextEditingController controllerInputWeight = TextEditingController();
-
+  static UserProvider of(BuildContext context) => Provider.of<UserProvider>(context, listen: false);
+  double bmi = 0;
   void setWeight(double value) {
     user.weight = value;
     notifyListeners();
@@ -27,6 +31,25 @@ class UserProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  void setAge(double age) {
+    user.age = age;
+    notifyListeners();
+  }
+
+  void setHeight(double height) {
+    user.height = height;
+    notifyListeners();
+  }
+
+  void plusAge(int number) {
+    user.age ??= 20;
+    setAge(user.age! + number);
+  }
+
+  void plusHeight(int number) {
+    user.height ??= 150;
+    setHeight(user.height! + number);
+  }
 
   void saveUserInfo() async {
     await SharedPrefsService.saveUserInfo(
@@ -36,8 +59,9 @@ class UserProvider extends ChangeNotifier {
           "weight": user.weight,
           "wakeUpTime": user.wakeUpTime,
           "bedTime": user.bedTime,
-          "birthDay": user.birthDay,
-          "recommendedMilli": user.recommendedMilli
+          "age": user.age,
+          "recommendedMilli": user.recommendedMilli,
+          "height": user.height
         },
       ),
     );
@@ -56,4 +80,10 @@ class UserProvider extends ChangeNotifier {
     }
     notifyListeners();
   }
+
+  void getBMI(){
+    bmi = user.weight! / pow(user.height!/100,2);
+    notifyListeners();
+  }
+
 }

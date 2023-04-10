@@ -4,14 +4,13 @@ import 'package:provider/provider.dart';
 import 'package:the_better_life/configs/router/routing_name.dart';
 import 'package:the_better_life/features/drink_water/providers/drink/drink_provider.dart';
 import 'package:the_better_life/features/drink_water/providers/user/user_provider.dart';
-import 'package:the_better_life/features/screens/before_start/widget/select_gender.dart';
+import 'package:the_better_life/features/screens/before_start/widget/select_gender_age.dart';
 import 'package:the_better_life/features/screens/before_start/widget/select_sleep.dart';
 import 'package:the_better_life/features/screens/before_start/widget/select_wake_up.dart';
-import 'package:the_better_life/features/screens/before_start/widget/select_weight.dart';
+import 'package:the_better_life/features/screens/before_start/widget/select_weight_height.dart';
 import 'package:the_better_life/utils/snackbar_builder.dart';
 import 'package:the_better_life/widgets/buttons/button_shadow_out.dart';
 import 'package:the_better_life/widgets/container/container_shadow_common.dart';
-
 
 class BeforeStartScreen extends StatefulWidget {
   const BeforeStartScreen({Key? key}) : super(key: key);
@@ -22,13 +21,20 @@ class BeforeStartScreen extends StatefulWidget {
 
 class _BeforeStartScreenState extends State<BeforeStartScreen> {
   final PageStorageBucket bucket = PageStorageBucket();
-  List<Widget> screens = [const SelectGender(), const SelectWeight(), const SelectWakeUp(), const SelectSleep()];
-  late DrinkProvider targetProvider;
+  List<Widget> screens = [
+    const SelectGenderAge(),
+    const SelectWeightHeight(),
+    const SelectWakeUp(),
+    const SelectSleep()
+  ];
+  late DrinkProvider drinkProvider;
   late ThemeData theme;
+
   @override
   Widget build(BuildContext context) {
-    targetProvider = Provider.of<DrinkProvider>(context, listen: false);
-    theme =  Theme.of(context);
+    drinkProvider = Provider.of<DrinkProvider>(context, listen: false);
+    theme = Theme.of(context);
+
     return Scaffold(
       body: Consumer2<DrinkProvider, UserProvider>(
         builder: (context, providerDrink, providerUser, child) {
@@ -40,21 +46,31 @@ class _BeforeStartScreenState extends State<BeforeStartScreen> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      _buildTopItem(srcIcon: 'assets/icons/ic_gender.svg', data: providerUser.user.gender, index: 0),
+                      _buildTopItem(
+                        srcIcon: 'assets/icons/ic_gender.svg',
+                        data: '${providerUser.user.gender} - ${providerUser.user.age?.toStringAsFixed(0)}',
+                        index: 0,
+                        isHide: providerUser.user.gender == null || providerUser.user.age == null,
+                      ),
                       _buildTopItem(
                         srcIcon: 'assets/icons/ic_scale.svg',
-                        data: providerUser.user.weight != null ? '${providerUser.user.weight?.toStringAsFixed(0)}kg' : null,
+                        data:
+                            '${providerUser.user.weight?.toStringAsFixed(0)}kg - ${providerUser.user.height?.toStringAsFixed(0)}cm',
                         index: 1,
+                        isHide: providerUser.user.weight == null || providerUser.user.height == null,
                       ),
                       _buildTopItem(
                         srcIcon: 'assets/icons/ic_alarm-clock.svg',
-                        data: providerUser.user.wakeUpTime,
+                        data: providerUser.user.wakeUpTime ?? '',
                         index: 2,
+                        isHide: providerUser.user.weight == null,
                       ),
                       _buildTopItem(
                         srcIcon: 'assets/icons/ic_sleep.svg',
-                        data: providerUser.user.bedTime,
+                        data: providerUser.user.bedTime ?? '',
                         index: 3,
+                        isHide: providerUser.user.bedTime == null,
+
                       ),
                     ],
                   ),
@@ -82,7 +98,7 @@ class _BeforeStartScreenState extends State<BeforeStartScreen> {
                         icons: Icons.arrow_back_ios_sharp,
                       ),
                       _buildButton(
-                        onPressed: (){
+                        onPressed: () {
                           _nextPage(userProvider: providerUser, drinkProvider: providerDrink);
                         },
                         icons: Icons.arrow_forward_ios_sharp,
@@ -98,21 +114,21 @@ class _BeforeStartScreenState extends State<BeforeStartScreen> {
     );
   }
 
-  Widget _buildTopItem({required String srcIcon, required String? data, required int index}) {
+  Widget _buildTopItem({required String srcIcon, required String data, required int index, required bool isHide}) {
     return Column(
       children: [
         ContainerShadowCommon(
           size: const Size(80, 40),
           padding: const EdgeInsets.all(10),
-          color: index <= targetProvider.currentIndexPage ? theme.primaryColor : theme.backgroundColor,
+          color: index <= drinkProvider.currentIndexPage ? theme.primaryColor : theme.backgroundColor,
           radius: 24,
           child: CommonImage(
             url: srcIcon,
-            color: index <= targetProvider.currentIndexPage ?theme.backgroundColor :  theme.disabledColor,
+            color: index <= drinkProvider.currentIndexPage ? theme.backgroundColor : theme.disabledColor,
           ),
         ),
         const SizedBox(height: 4),
-        Text(data ?? '_ _ _',style: theme.textTheme.headline6),
+        Text(isHide ? '___' : data, style: theme.textTheme.bodyText2),
       ],
     );
   }
@@ -125,34 +141,34 @@ class _BeforeStartScreenState extends State<BeforeStartScreen> {
     );
   }
 
-  void _nextPage({required UserProvider userProvider, required DrinkProvider drinkProvider}){
-    switch(drinkProvider.currentIndexPage){
+  void _nextPage({required UserProvider userProvider, required DrinkProvider drinkProvider}) {
+    switch (drinkProvider.currentIndexPage) {
       case 0:
-        if(userProvider.user.gender != null){
+        if (userProvider.user.gender != null && userProvider.user.age != null) {
           drinkProvider.setCurrentIndexPage(drinkProvider.currentIndexPage + 1);
-        }else{
-          SnackBarBuilder.showSnackBar(content: 'Select your gender!', status: false);
+        } else {
+          SnackBarBuilder.showSnackBar(content: 'Select your gender and age!', status: false);
         }
         break;
       case 1:
-        if(userProvider.user.weight != null){
+        if (userProvider.user.weight != null && userProvider.user.height != null) {
           drinkProvider.setCurrentIndexPage(drinkProvider.currentIndexPage + 1);
-        }else{
-          SnackBarBuilder.showSnackBar(content: 'Select your weight!', status: false);
+        } else {
+          SnackBarBuilder.showSnackBar(content: 'Select your weight and height!', status: false);
         }
         break;
       case 2:
-        if(userProvider.user.wakeUpTime != null){
+        if (userProvider.user.wakeUpTime != null) {
           drinkProvider.setCurrentIndexPage(drinkProvider.currentIndexPage + 1);
-        }else{
+        } else {
           SnackBarBuilder.showSnackBar(content: 'Select your wakeup time!', status: false);
         }
         break;
       case 3:
-        if(userProvider.user.bedTime != null){
+        if (userProvider.user.bedTime != null) {
           userProvider.setWatterQuantity();
           Navigator.pushNamed(context, RoutingNameConstants.LetGoScreen);
-        }else{
+        } else {
           SnackBarBuilder.showSnackBar(content: 'Select your sleep time!', status: false);
         }
         break;

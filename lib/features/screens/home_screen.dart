@@ -27,10 +27,6 @@ class _HomeScreenState extends State<HomeScreen> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                ContainerShadowCommon(),
-                ContainerShadowCommon(),
-                ContainerShadowCommon(),
-                ContainerShadowCommon(),
               ],
             ),
             const SizedBox(height: 20),

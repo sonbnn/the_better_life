@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:the_better_life/features/bmi_caculator/screen/bmi_calculator_sreen.dart';
 import 'package:the_better_life/features/drink_water/providers/page/page_provider.dart';
-import 'package:the_better_life/features/drink_water/screens/home_water/home/home_screen.dart';
+import 'package:the_better_life/features/drink_water/screens/home_water/home_screen.dart';
 import 'package:the_better_life/widgets/container/container_shadow_common.dart';
 
 class DashBoard extends StatefulWidget {
@@ -61,11 +61,15 @@ class _DashBoardState extends State<DashBoard> {
       onTap: () {
         PageProvider.of(context).setCurrentIndexPage(index);
       },
-      child: CommonImage(
-        url: 'assets/icons/ic_$icon.svg',
-        width: 30,
-        height: 30,
-        color: PageProvider.of(context).currentIndexPage == index ?theme.primaryColor :  theme.disabledColor,
+      child: Container(
+        height: 80,
+        padding: const EdgeInsets.symmetric(horizontal: 10),
+        child: CommonImage(
+          url: 'assets/icons/ic_$icon.svg',
+          width: 30,
+          height: 30,
+          color: PageProvider.of(context).currentIndexPage == index ?theme.primaryColor :  theme.disabledColor,
+        ),
       ),
     );
   }

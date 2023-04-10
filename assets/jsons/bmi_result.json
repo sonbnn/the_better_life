@@ -1,0 +1,44 @@
+{
+  "bmi_result": [
+    {
+      "color": "0xff8000ff",
+      "title": "TXT_SEVERELY_UNDERWEIGHT",
+      "numeral": "<16"
+    },
+    {
+      "color": "0xff4800ff",
+      "title": "TXT_UNDERWEIGHT",
+      "numeral": "16.0 - 16.9"
+    },
+    {
+      "color": "0xff5bcdfa",
+      "title": "TXT_MILDLY_UNDERWEIGHT",
+      "numeral": "17.0 - 18.4"
+    },
+    {
+      "color": "0xff00ff00",
+      "title": "TXT_NORMAL",
+      "numeral": "18.5 - 24.9"
+    },
+    {
+      "color": "0xffffd966",
+      "title": "TXT_OVER_WEIGHT",
+      "numeral": "25.0 - 29.9"
+    },
+    {
+      "color": "0xffeb9761",
+      "title": "TXT_OBESITY_GRADE1",
+      "numeral": "30.0 - 34.9"
+    },
+    {
+      "color": "0xffa66408",
+      "title": "TXT_OBESITY_GRADE2",
+      "numeral": "35.0 - 39.9"
+    },
+    {
+      "color": "0xffff0040",
+      "title": "TXT_OBESITY_GRADE3",
+      "numeral": "≥40"
+    }
+  ]
+}

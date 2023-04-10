@@ -2,13 +2,16 @@
 
 abstract class RoutingNameConstants {
   //Common
-  static const String SplashScreen = '/splash';
-  static const String HomeScreen = '/home';
-  static const String DashBoard = '/dashBoard';
-  static const String StartScreen = '/startScreen';
-  static const String LetGoScreen = '/letGoScreen';
+  static const String SplashScreen = '/Splash';
+  static const String HomeScreen = '/Home';
+  static const String DashBoard = '/DashBoard';
+  static const String StartScreen = '/StartScreen';
+  static const String LetGoScreen = '/LetGoScreen';
+  static const String SettingScreen = '/SettingScreen';
   //Watter
   static const String HistoryScreen = '/historyScreen';
   static const String BeforeStartScreen = '/beforeStartScreen';
+  //BMI
+  static const String BMIResultScreen = '/BMIResultScreen';
 
 }

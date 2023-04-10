@@ -7,7 +7,7 @@ import 'package:flutter/services.dart';
 import 'package:the_better_life/configs/router/routing_name.dart';
 import 'package:the_better_life/features/drink_water/providers/drink/drink_provider.dart';
 import 'package:the_better_life/features/drink_water/providers/user/user_provider.dart';
-import 'package:the_better_life/features/drink_water/screens/home_water/home/widget/draw_water.dart';
+import 'package:the_better_life/features/drink_water/screens/home_water/widget/draw_water.dart';
 import 'package:the_better_life/utils/regex.dart';
 import 'package:the_better_life/utils/snackbar_builder.dart';
 import 'package:the_better_life/widgets/buttons/button_shadow_out.dart';

@@ -26,7 +26,7 @@ final appThemeData = {
         fontSize: 24,
         fontFamily: 'Nunito',
       ),
-      iconTheme: IconThemeData(color: Color(0xFF2A4067)),
+      iconTheme: IconThemeData(color: Color(0xFF6B8299)),
     ),
     disabledColor: Color(0xff6B8299),
     dividerColor: Color(0xFF2A4067),
