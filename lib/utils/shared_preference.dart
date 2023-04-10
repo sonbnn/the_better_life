@@ -105,27 +105,27 @@ class SharedPrefsService {
   }
 
 
-  static Future<void> saveDayHistory(List<HistoryDay> historyDay) async {
+  static Future<void> saveDayHistory(List<WaterHistoryDay> historyDay) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.setString('historyDay', jsonEncode(historyDay));
   }
 
-  static Future<List<HistoryDay>> getDayHistory() async {
+  static Future<List<WaterHistoryDay>> getDayHistory() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     final String? info = prefs.getString('historyDay');
-    final List<HistoryDay> historyDay = HistoryDay.decode(info ?? '');
+    final List<WaterHistoryDay> historyDay = WaterHistoryDay.decode(info ?? '');
     return historyDay;
   }
 
-  static Future<void> saveMonthHistory(List<HistoryMonth> historyMonth) async {
+  static Future<void> saveMonthHistory(List<WaterHistoryMonth> historyMonth) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.setString('monthHistory', jsonEncode(historyMonth));
   }
 
-  static Future<List<HistoryMonth>> getMonthHistory() async {
+  static Future<List<WaterHistoryMonth>> getMonthHistory() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     final String? info = prefs.getString('monthHistory');
-    final List<HistoryMonth> historyMonth = HistoryMonth.decode(info ?? '');
+    final List<WaterHistoryMonth> historyMonth = WaterHistoryMonth.decode(info ?? '');
     return historyMonth;
   }
 

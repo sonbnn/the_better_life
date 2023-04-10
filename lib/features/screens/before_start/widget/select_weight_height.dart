@@ -26,7 +26,7 @@ class _SelectWeightHeightState extends State<SelectWeightHeight> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text('TXT_CHOOSE_YOUR_WEIGHT_HEIGHT'.tr(), style: theme.textTheme.headline3),
+                Text('TXT_CHOOSE_YOUR_WEIGHT_HEIGHT'.tr(), style: theme.textTheme.headline5),
                 const SizedBox(width: 8),
                 const CommonImage(url: 'assets/icons/ic_move_left_right.svg')
               ],

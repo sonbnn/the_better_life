@@ -1,0 +1,12 @@
+{
+  "language": [
+    {
+      "isoCode": "en",
+      "name": "English"
+    },
+    {
+      "isoCode": "vi",
+      "name": "Tiếng việt"
+    }
+  ]
+}

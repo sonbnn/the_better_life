@@ -5,8 +5,10 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
+import 'package:the_better_life/configs/constants/constant_size.dart';
 import 'package:the_better_life/features/drink_water/providers/user/user_provider.dart';
 import 'package:the_better_life/widgets/buttons/button_shadow_out.dart';
+import 'package:the_better_life/widgets/common/base_appbar.dart';
 import 'package:the_better_life/widgets/container/container_shadow_common.dart';
 
 class BMIResultScreen extends StatefulWidget {
@@ -29,22 +31,18 @@ class _BMIResultScreenState extends State<BMIResultScreen> {
   @override
   Widget build(BuildContext context) {
     textTheme = Theme.of(context).textTheme;
-    Size size = MediaQuery.of(context).size;
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          'TXT_RESULT_BMI'.tr(),
-          style: textTheme.headline3,
-        ),
-      ),
+      appBar: BaseAppBar(title: 'TXT_RESULT_BMI'.tr()),
       body: Consumer<UserProvider>(
         builder: (context, provider, child) {
           return Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 24),
+            padding: EdgeInsets.symmetric(horizontal: ConstantSize.spaceMargin),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                const Expanded(child: CommonImage(url: "assets/images/img_bmi.png")),
+                ConstantSize.isSmallScreen
+                    ? const SizedBox()
+                    : const Expanded(child: CommonImage(url: "assets/images/img_bmi.png")),
                 Text(
                   '${'TXT_YOUR_BMI_IS'.tr()} ${'${bmiResult[getIndex(provider.bmi)]['title']}'.tr().toLowerCase()}',
                   style: textTheme.headline5,

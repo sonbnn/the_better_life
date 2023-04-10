@@ -52,12 +52,17 @@ final appThemeData = {
       focusedErrorBorder: OutlineInputBorder(borderSide: BorderSide(color: Color(0xFFF42827), width: 1)),
       labelStyle: TextStyle(fontSize: 14, fontWeight: FontWeight.w600, color: Color(0xFF003C93)),
     ),
-
+    bottomSheetTheme: BottomSheetThemeData(backgroundColor: Color(0xFFE3EDF7)),
+    timePickerTheme: TimePickerThemeData(
+      backgroundColor: Color(0xFFE3EDF7),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12.0)),
+      helpTextStyle: TextStyle(color: Color(0xFF2A4067), fontWeight: FontWeight.w600, fontSize: 16),
+    ),
     textTheme: TextTheme(
       bodyText1: TextStyle(color: Color(0xFF2A4067), fontWeight: FontWeight.w600, fontSize: 16),
       bodyText2: TextStyle(color: Color(0xFF2A4067), fontWeight: FontWeight.w400, fontSize: 14),
       caption: TextStyle(color: Color(0xFF2A4067), fontWeight: FontWeight.w400, fontSize: 10),
-      button: TextStyle(color: Color(0xFF2A4067), fontWeight: FontWeight.w700, fontSize: 18),
+      button: TextStyle(color: Color(0xFF2A4067), fontWeight: FontWeight.w700, fontSize: 16),
       headline6: TextStyle(color: Color(0xFF2A4067), fontWeight: FontWeight.w600, fontSize: 18),
       headline5: TextStyle(color: Color(0xFF2A4067), fontWeight: FontWeight.w700, fontSize: 20),
       headline4: TextStyle(color: Color(0xFF2A4067), fontWeight: FontWeight.w700, fontSize: 22),
@@ -65,7 +70,6 @@ final appThemeData = {
       headline2: TextStyle(color: Color(0xFF2A4067), fontWeight: FontWeight.w700, fontSize: 26),
       headline1: TextStyle(color: Color(0xFF2A4067), fontWeight: FontWeight.w700, fontSize: 28),
     ),
-
   ),
   AppTheme.dark: ThemeData(
     brightness: Brightness.dark,

@@ -13,15 +13,21 @@ PODS:
   - FMDB (2.7.5):
     - FMDB/standard (= 2.7.5)
   - FMDB/standard (2.7.5)
+  - Mute (0.6.1)
   - path_provider_foundation (0.0.1):
     - Flutter
     - FlutterMacOS
   - platform_device_id (0.0.1):
     - Flutter
   - ReachabilitySwift (5.0.0)
+  - real_volume (0.0.1):
+    - Flutter
+    - Mute (~> 0.6.0)
   - shared_preferences_foundation (0.0.1):
     - Flutter
     - FlutterMacOS
+  - soundpool (0.0.1):
+    - Flutter
   - sqflite (0.0.2):
     - Flutter
     - FMDB (>= 2.7.5)
@@ -35,12 +41,15 @@ DEPENDENCIES:
   - fluttertoast (from `.symlinks/plugins/fluttertoast/ios`)
   - path_provider_foundation (from `.symlinks/plugins/path_provider_foundation/ios`)
   - platform_device_id (from `.symlinks/plugins/platform_device_id/ios`)
+  - real_volume (from `.symlinks/plugins/real_volume/ios`)
   - shared_preferences_foundation (from `.symlinks/plugins/shared_preferences_foundation/ios`)
+  - soundpool (from `.symlinks/plugins/soundpool/ios`)
   - sqflite (from `.symlinks/plugins/sqflite/ios`)
 
 SPEC REPOS:
   trunk:
     - FMDB
+    - Mute
     - ReachabilitySwift
     - Toast
 
@@ -59,8 +68,12 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/path_provider_foundation/ios"
   platform_device_id:
     :path: ".symlinks/plugins/platform_device_id/ios"
+  real_volume:
+    :path: ".symlinks/plugins/real_volume/ios"
   shared_preferences_foundation:
     :path: ".symlinks/plugins/shared_preferences_foundation/ios"
+  soundpool:
+    :path: ".symlinks/plugins/soundpool/ios"
   sqflite:
     :path: ".symlinks/plugins/sqflite/ios"
 
@@ -71,10 +84,13 @@ SPEC CHECKSUMS:
   flutter_secure_storage: 23fc622d89d073675f2eaa109381aefbcf5a49be
   fluttertoast: eb263d302cc92e04176c053d2385237e9f43fad0
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
+  Mute: 20135a96076f140cc82bfc8b810e2d6150d8ec7e
   path_provider_foundation: c68054786f1b4f3343858c1e1d0caaded73f0be9
   platform_device_id: 81b3e2993881f87d0c82ef151dc274df4869aef5
   ReachabilitySwift: 985039c6f7b23a1da463388634119492ff86c825
+  real_volume: 6d09deeabb06963275fa8df0fb1616a5886363d6
   shared_preferences_foundation: 986fc17f3d3251412d18b0265f9c64113a8c2472
+  soundpool: c7f4422ca206e77f8900ed3c4ee6a6ff5a0e38a9
   sqflite: 6d358c025f5b867b29ed92fc697fd34924e11904
   Toast: 91b396c56ee72a5790816f40d3a94dd357abc196
 

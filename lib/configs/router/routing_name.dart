@@ -8,10 +8,10 @@ abstract class RoutingNameConstants {
   static const String StartScreen = '/StartScreen';
   static const String LetGoScreen = '/LetGoScreen';
   static const String SettingScreen = '/SettingScreen';
-  //Watter
+  static const String ChooseLanguageScreen = '/ChooseLanguageScreen';
   static const String HistoryScreen = '/historyScreen';
   static const String BeforeStartScreen = '/beforeStartScreen';
-  //BMI
   static const String BMIResultScreen = '/BMIResultScreen';
+  static const String EditPersonalScreen = '/EditPersonalScreen';
 
 }

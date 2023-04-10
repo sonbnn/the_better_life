@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:the_better_life/widgets/container/container_shadow_common.dart';
 
 class ButtonShadowOuter extends StatefulWidget {
-  Function action;
-  Widget child;
-  Size? size;
-  double? radius;
-  EdgeInsets? padding;
-  EdgeInsets? margin;
-  Color? color;
+  final Function action;
+  final Widget child;
+  final Size? size;
+  final double? radius;
+  final EdgeInsets? padding;
+  final EdgeInsets? margin;
+  final Color? color;
 
-  ButtonShadowOuter({
+  const ButtonShadowOuter({
     Key? key,
     required this.action,
     required this.child,
@@ -31,7 +31,7 @@ class _ButtonShadowOuterState extends State<ButtonShadowOuter> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      overlayColor: MaterialStateProperty.all(const Color(0xFF212330).withOpacity(.1)),
+      overlayColor: MaterialStateProperty.all(Colors.transparent),
       borderRadius: BorderRadius.circular(18),
       onTap: checkCondition,
       child: ContainerShadowCommon(
@@ -39,7 +39,7 @@ class _ButtonShadowOuterState extends State<ButtonShadowOuter> {
         padding: widget.padding,
         margin: widget.margin,
         color: widget.color,
-        radius: widget.radius ?? 24,
+        radius: widget.radius ?? 12,
         child: widget.child,
       ),
     );

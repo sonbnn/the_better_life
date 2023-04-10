@@ -1,6 +1,5 @@
 library weight_slider;
 
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:the_better_life/widgets/container/container_shadow_common.dart';
@@ -33,14 +32,14 @@ class WeightSlider extends StatelessWidget {
       children: [
         ContainerShadowCommon(
           size: Size(double.infinity, height),
-          radius: 24,
+          radius: 12,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const SizedBox(height: 4),
               Text(
                 title,
-                style: Theme.of(context).textTheme.headline5,
+                style: Theme.of(context).textTheme.headline6,
               ),
               SizedBox(
                 width: double.infinity,

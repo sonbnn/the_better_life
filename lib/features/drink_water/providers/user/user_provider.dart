@@ -68,7 +68,8 @@ class UserProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void setWatterQuantity() {
+
+  void setWaterQuantity() {
     user.recommendedMilli = double.parse((((user.weight ?? 0) * 0.03) * 1000).toStringAsFixed(0));
     notifyListeners();
   }

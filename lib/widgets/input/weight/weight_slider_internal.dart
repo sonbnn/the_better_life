@@ -19,7 +19,7 @@ class WeightSliderInternal extends StatefulWidget {
     required this.unit,
     required this.onChange,
     required this.width,
-  }): super(key: key);
+  }) : super(key: key);
 
   @override
   State<WeightSliderInternal> createState() => _WeightSliderInternalState();
@@ -27,6 +27,7 @@ class WeightSliderInternal extends StatefulWidget {
 
 class _WeightSliderInternalState extends State<WeightSliderInternal> {
   double get itemExtent => widget.width / 3;
+  late ThemeData theme;
 
   int _indexToValue(int index) => widget.minValue + (index - 1);
   late ScrollController scrollController;
@@ -38,10 +39,10 @@ class _WeightSliderInternalState extends State<WeightSliderInternal> {
       initialScrollOffset: (widget.value - widget.minValue) * widget.width / 3,
     );
   }
-
   @override
   build(BuildContext context) {
     int itemCount = (widget.maxValue - widget.minValue) + 3;
+    theme = Theme.of(context);
     return NotificationListener(
       onNotification: _onNotification,
       child: ListView.builder(
@@ -56,41 +57,31 @@ class _WeightSliderInternalState extends State<WeightSliderInternal> {
           return isExtra
               ? Container()
               : GestureDetector(
-            behavior: HitTestBehavior.translucent,
-            onTap: () => _animateTo(itemValue, durationMillis: 50),
-            child: FittedBox(
-              fit: BoxFit.scaleDown,
-              child: Text(
-                itemValue != widget.value
-                    ? itemValue.toString()
-                    : itemValue.toString() + widget.unit,
-                style: _getTextStyle(context, itemValue),
-              ),
-            ),
-          );
+                  behavior: HitTestBehavior.translucent,
+                  onTap: () => _animateTo(itemValue, durationMillis: 50),
+                  child: FittedBox(
+                    fit: BoxFit.scaleDown,
+                    child: Text(
+                      itemValue != widget.value ? itemValue.toString() : itemValue.toString() + widget.unit,
+                      style: _getTextStyle(context, itemValue),
+                    ),
+                  ),
+                );
         },
       ),
     );
   }
 
-  TextStyle _getDefaultTextStyle() {
-    return const TextStyle(
-      color: Colors.grey,
-      fontSize: 14.0,
-    );
+  TextStyle? _getDefaultTextStyle() {
+    return theme.textTheme.bodyText2?.copyWith(color: theme.disabledColor);
   }
 
-  TextStyle _getHighlightTextStyle(BuildContext context) {
-    return TextStyle(
-      color: Theme.of(context).primaryColor,
-      fontSize: 28.0,
-    );
+  TextStyle? _getHighlightTextStyle(BuildContext context) {
+    return theme.textTheme.headline3?.copyWith(color: theme.primaryColor);
   }
 
-  TextStyle _getTextStyle(BuildContext context, int itemValue) {
-    return itemValue == widget.value
-        ? _getHighlightTextStyle(context)
-        : _getDefaultTextStyle();
+  TextStyle? _getTextStyle(BuildContext context, int itemValue) {
+    return itemValue == widget.value ? _getHighlightTextStyle(context) : _getDefaultTextStyle();
   }
 
   bool _userStoppedScrolling(Notification notification) {

@@ -41,8 +41,10 @@ class _BeforeStartScreenState extends State<BeforeStartScreen> {
           return SafeArea(
             child: Column(
               children: [
-                Padding(
-                  padding: const EdgeInsets.all(24),
+                Container(
+                  margin: const EdgeInsets.symmetric(vertical: 24),
+                  width: MediaQuery.of(context).size.width - 48,
+                  height: 70,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -118,17 +120,17 @@ class _BeforeStartScreenState extends State<BeforeStartScreen> {
     return Column(
       children: [
         ContainerShadowCommon(
-          size: const Size(80, 40),
+          size: const Size(76, 40),
           padding: const EdgeInsets.all(10),
           color: index <= drinkProvider.currentIndexPage ? theme.primaryColor : theme.backgroundColor,
-          radius: 24,
+          radius: 12,
           child: CommonImage(
             url: srcIcon,
             color: index <= drinkProvider.currentIndexPage ? theme.backgroundColor : theme.disabledColor,
           ),
         ),
         const SizedBox(height: 4),
-        Text(isHide ? '___' : data, style: theme.textTheme.bodyText2),
+        Text(isHide ? '___' : data, style: theme.textTheme.caption?.copyWith(fontSize: 12)),
       ],
     );
   }
@@ -166,7 +168,7 @@ class _BeforeStartScreenState extends State<BeforeStartScreen> {
         break;
       case 3:
         if (userProvider.user.bedTime != null) {
-          userProvider.setWatterQuantity();
+          userProvider.setWaterQuantity();
           Navigator.pushNamed(context, RoutingNameConstants.LetGoScreen);
         } else {
           SnackBarBuilder.showSnackBar(content: 'Select your sleep time!', status: false);

@@ -27,7 +27,7 @@ class _SelectGenderAgeState extends State<SelectGenderAge> {
           return Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text('TXT_CHOOSE_YOUR_GENDER_AGE'.tr(), style: theme.textTheme.headline3),
+              Text('TXT_CHOOSE_YOUR_GENDER_AGE'.tr(), style: theme.textTheme.headline5),
               const SizedBox(height: 24),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,

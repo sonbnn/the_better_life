@@ -2,6 +2,8 @@
 import 'package:the_better_life/configs/env_config.dart';
 
 abstract class Constants {
+  static String appVersion = '1.0.0';
+
   static String bundleId = 'game.onechain.saas';
 
   static String appStoreId = '';

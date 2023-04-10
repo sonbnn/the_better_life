@@ -28,7 +28,11 @@ dependencies:
   lottie: ^2.3.1
   get_it: ^7.2.0
   flutter_svg: ^1.1.6
-  #
+  #sound
+  soundpool: ^2.3.0
+  real_volume: ^1.0.6
+  material_dialogs: ^1.1.4
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -46,6 +50,8 @@ flutter:
     - assets/fonts/
     - assets/jsons/
     - assets/jsons/translations/
+    - assets/sounds/
+    - assets/jsons/lottie/
   fonts:
     - family: Nunito
       fonts:

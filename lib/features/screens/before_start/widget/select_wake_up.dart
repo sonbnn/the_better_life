@@ -34,11 +34,7 @@ class _SelectWakeUpState extends State<SelectWakeUp> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-
-              Text(
-                'TXT_CHOOSE_YOUR_TIME_WAKE_UP'.tr(),
-                style: theme.textTheme.headline3,
-              ),
+              Text('TXT_CHOOSE_YOUR_TIME_WAKE_UP'.tr(), style: theme.textTheme.headline5),
               const SizedBox(height: 24),
               Text(
                 '${'TXT_YOU_CHOOSE_TO_WAKE_UP_AT'.tr()} ${provider.user.wakeUpTime}',
@@ -49,7 +45,10 @@ class _SelectWakeUpState extends State<SelectWakeUp> {
                 child: ButtonShadowOuter(
                   size: const Size(double.infinity, 56),
                   action: _showDialogPickTime,
-                  child: Text('TXT_RESELECT'.tr(), style: theme.textTheme.button,),
+                  child: Text(
+                    'TXT_RESELECT'.tr(),
+                    style: theme.textTheme.button,
+                  ),
                 ),
               ),
             ],
@@ -64,7 +63,6 @@ class _SelectWakeUpState extends State<SelectWakeUp> {
       context: context,
       initialTime: const TimeOfDay(hour: 6, minute: 30),
       helpText: 'Select time wakeup',
-
     );
     if (newTime == null) return;
     Provider.of<UserProvider>(context, listen: false).setTimeWakeUp(newTime);

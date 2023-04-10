@@ -4,15 +4,18 @@ import 'package:core/core.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:lottie/lottie.dart';
 import 'package:the_better_life/configs/router/routing_name.dart';
 import 'package:the_better_life/features/drink_water/providers/drink/drink_provider.dart';
 import 'package:the_better_life/features/drink_water/providers/user/user_provider.dart';
 import 'package:the_better_life/features/drink_water/screens/home_water/widget/draw_water.dart';
+import 'package:the_better_life/helper/sound_controller.dart';
 import 'package:the_better_life/utils/regex.dart';
 import 'package:the_better_life/utils/snackbar_builder.dart';
 import 'package:the_better_life/widgets/buttons/button_shadow_out.dart';
 import 'package:the_better_life/widgets/circular_percent_indicator.dart';
 import 'package:the_better_life/widgets/container/container_shadow_common.dart';
+import 'package:material_dialogs/material_dialogs.dart';
 
 class BoxMainHome extends StatefulWidget {
   final DrinkProvider drinkProvider;
@@ -25,9 +28,10 @@ class BoxMainHome extends StatefulWidget {
 }
 
 class _BoxMainHomeState extends State<BoxMainHome> {
-  List _listWatter = [];
+  List _listWater = [];
   final TextEditingController _controller = TextEditingController();
   late ThemeData theme;
+  late Size size;
 
   @override
   void initState() {
@@ -37,7 +41,7 @@ class _BoxMainHomeState extends State<BoxMainHome> {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
+    size = MediaQuery.of(context).size;
     double oldValue = widget.drinkProvider.progress;
     DateTime today = DateTime.now();
     String timeNow = "${today.hour}:${today.minute}";
@@ -54,7 +58,7 @@ class _BoxMainHomeState extends State<BoxMainHome> {
             onPressed: () {
               Navigator.pushNamed(context, RoutingNameConstants.HistoryScreen);
             },
-            icon: Icon(Icons.history, color: theme.dividerColor),
+            icon: const Icon(Icons.history),
           ),
         ),
         TweenAnimationBuilder(
@@ -94,11 +98,16 @@ class _BoxMainHomeState extends State<BoxMainHome> {
                           GestureDetector(
                             child: ButtonShadowOuter(
                               action: () {
+                                SoundController.playSoundDrink();
                                 setState(() {
                                   oldValue = widget.drinkProvider.progress;
                                 });
                                 widget.drinkProvider.addWater();
-                                widget.drinkProvider.addHistoryDay(timeRef: timeNow, amount: widget.drinkProvider.amount);
+                                widget.drinkProvider
+                                    .addHistoryDay(timeRef: timeNow, amount: widget.drinkProvider.amount);
+                                if (sizeWatter * 100 == 100.0) {
+                                  showResultDialog();
+                                }
                               },
                               color: theme.primaryColor,
                               size: const Size(110, 50),
@@ -158,13 +167,13 @@ class _BoxMainHomeState extends State<BoxMainHome> {
                 ),
                 Expanded(
                   child: ListView.builder(
-                    itemCount: _listWatter.length,
+                    itemCount: _listWater.length,
                     scrollDirection: Axis.horizontal,
                     shrinkWrap: true,
                     itemBuilder: (context, index) {
                       return _buildItemWatter(
-                        amount: _listWatter[index]["amount"],
-                        urlImage: _listWatter[index]["iconSrc"],
+                        amount: _listWater[index]["amount"],
+                        urlImage: _listWater[index]["iconSrc"],
                       );
                     },
                   ),
@@ -192,7 +201,8 @@ class _BoxMainHomeState extends State<BoxMainHome> {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     ButtonShadowOuter(
-                      size: const Size(100, 56),
+                      size: const Size(100, 46),
+                      radius: 12,
                       action: () {
                         Navigator.pop(context);
                       },
@@ -200,7 +210,8 @@ class _BoxMainHomeState extends State<BoxMainHome> {
                     ),
                     const SizedBox(width: 12),
                     ButtonShadowOuter(
-                      size: const Size(100, 56),
+                      size: const Size(100, 46),
+                      radius: 12,
                       action: () {
                         if (_controller.text.isNotEmpty && double.parse(_controller.text) != 0) {
                           widget.drinkProvider.setAmount(double.parse(_controller.text));
@@ -253,7 +264,30 @@ class _BoxMainHomeState extends State<BoxMainHome> {
     final String response = await rootBundle.loadString('assets/jsons/watter_config.json');
     final data = await json.decode(response);
     setState(() {
-      _listWatter = data['watter'];
+      _listWater = data['watter'];
     });
+  }
+
+  Future<void> showResultDialog() {
+    return Dialogs.materialDialog(
+      color: theme.backgroundColor,
+      title: 'TXT_CONGRATULATIONS'.tr(),
+      msg: 'TXT_CONGRATULATIONS_DESCRIPTION'.tr(),
+      titleStyle: theme.textTheme.headline5!.copyWith(color: theme.primaryColor),
+      msgStyle: theme.textTheme.bodyText1!,
+      lottieBuilder: Lottie.asset(
+        'assets/jsons/lottie/congratulations_water.json',
+
+      ),
+      context: context,
+      actions: [
+        ButtonShadowOuter(
+          action: () {
+            Navigator.of(context).pop();
+          },
+          child: Text('TXT_CONFIRM'.tr(), style: theme.textTheme.button),
+        ),
+      ],
+    );
   }
 }

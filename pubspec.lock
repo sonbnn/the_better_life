@@ -374,6 +374,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.2.0"
+  material_dialogs:
+    dependency: "direct main"
+    description:
+      name: material_dialogs
+      sha256: "7828b8e70e5227c1fc2bcdf5c3ac4f22049b9ead6bae96a44ca55a4c7b8da949"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.1.4"
   meta:
     dependency: transitive
     description:
@@ -582,6 +590,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "6.0.5"
+  real_volume:
+    dependency: "direct main"
+    description:
+      name: real_volume
+      sha256: "328730604b1ba617abccfd430243bd6eb16924fed83a8e99d5e21af9bf03e2b5"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.6"
   rxdart:
     dependency: transitive
     description:
@@ -651,6 +667,38 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.99"
+  soundpool:
+    dependency: "direct main"
+    description:
+      name: soundpool
+      sha256: "4aa6b4950e7853dc7f6318234f12c6f27fe1fa8ee55a002ce7d158bc927f6129"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.3.0"
+  soundpool_macos:
+    dependency: transitive
+    description:
+      name: soundpool_macos
+      sha256: dd389a629d32e3960fbe55958f2f7e03e074c4987fadf38fbe6c7e0a1ba32528
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.2.0"
+  soundpool_platform_interface:
+    dependency: transitive
+    description:
+      name: soundpool_platform_interface
+      sha256: "9787f96b54a12e236cd3715cd2cc4bcd1fc1131e834ea7b295ac849ab4e24eab"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.1.0"
+  soundpool_web:
+    dependency: transitive
+    description:
+      name: soundpool_web
+      sha256: "5242ebd135c210e6b4239fb2409f2da91af688358e3070c9c33ea625d85b7d22"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.2.0"
   source_span:
     dependency: transitive
     description:

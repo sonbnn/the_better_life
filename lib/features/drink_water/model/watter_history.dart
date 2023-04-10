@@ -1,13 +1,13 @@
 import 'dart:convert';
 
-class HistoryDay {
+class WaterHistoryDay {
   double? amount;
   String? time;
 
-  HistoryDay({this.amount, this.time});
+  WaterHistoryDay({this.amount, this.time});
 
-  factory HistoryDay.fromJson(Map<String, dynamic> json) {
-    return HistoryDay(
+  factory WaterHistoryDay.fromJson(Map<String, dynamic> json) {
+    return WaterHistoryDay(
       amount: json['amount'],
       time: json['time'],
     );
@@ -20,16 +20,16 @@ class HistoryDay {
     return data;
   }
 
-  static Map<String, dynamic> toMap(HistoryDay dataHistory) => {
+  static Map<String, dynamic> toMap(WaterHistoryDay dataHistory) => {
         'amount': dataHistory.amount,
         'time': dataHistory.time,
       };
 
-  static String encode(List<HistoryDay> dataHistory) =>
-      json.encode(dataHistory.map<Map<String, dynamic>>((music) => HistoryDay.toMap(music)).toList());
+  static String encode(List<WaterHistoryDay> dataHistory) =>
+      json.encode(dataHistory.map<Map<String, dynamic>>((music) => WaterHistoryDay.toMap(music)).toList());
 
-  static List<HistoryDay> decode(String dataHistory) =>
-      (json.decode(dataHistory) as List<dynamic>).map<HistoryDay>((item) => HistoryDay.fromJson(item)).toList();
+  static List<WaterHistoryDay> decode(String dataHistory) =>
+      (json.decode(dataHistory) as List<dynamic>).map<WaterHistoryDay>((item) => WaterHistoryDay.fromJson(item)).toList();
 
   @override
   String toString() {
@@ -37,14 +37,14 @@ class HistoryDay {
   }
 }
 
-class HistoryMonth {
+class WaterHistoryMonth {
   String? result;
   String? date;
 
-  HistoryMonth({this.result, this.date});
+  WaterHistoryMonth({this.result, this.date});
 
-  factory HistoryMonth.fromJson(Map<String, dynamic> json) {
-    return HistoryMonth(
+  factory WaterHistoryMonth.fromJson(Map<String, dynamic> json) {
+    return WaterHistoryMonth(
       result: json['result'],
       date: json['date'],
     );
@@ -57,17 +57,17 @@ class HistoryMonth {
     return data;
   }
 
-  static Map<String, dynamic> toMap(HistoryMonth historyMonth) => {
+  static Map<String, dynamic> toMap(WaterHistoryMonth historyMonth) => {
     'result': historyMonth.result,
     'date': historyMonth.date,
   };
 
-  static String encode(List<HistoryMonth> dataHistory) =>
-      json.encode(dataHistory.map<Map<String, dynamic>>((e) => HistoryMonth.toMap(e)).toList());
+  static String encode(List<WaterHistoryMonth> dataHistory) =>
+      json.encode(dataHistory.map<Map<String, dynamic>>((e) => WaterHistoryMonth.toMap(e)).toList());
 
-  static List<HistoryMonth> decode(String e) {
+  static List<WaterHistoryMonth> decode(String e) {
     if(e.isNotEmpty){
-      return (json.decode(e) as List<dynamic>).map<HistoryMonth>((item) => HistoryMonth.fromJson(item)).toList();
+      return (json.decode(e) as List<dynamic>).map<WaterHistoryMonth>((item) => WaterHistoryMonth.fromJson(item)).toList();
     }else{
       return [];
     }

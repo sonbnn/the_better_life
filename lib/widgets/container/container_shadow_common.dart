@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 
 class ContainerShadowCommon extends StatelessWidget {
-  Size? size;
-  Widget? child;
-  double? radius;
-  EdgeInsets? padding;
-  EdgeInsets? margin;
-  Color? color;
-  Color? colorShadowTopLeft;
+  final Size? size;
+  final Widget? child;
+  final double? radius;
+  final EdgeInsets? padding;
+  final EdgeInsets? margin;
+  final Color? color;
+  final Color? colorShadowTopLeft;
 
-  ContainerShadowCommon({
+  const ContainerShadowCommon({
     Key? key,
     this.size,
     required this.child,
@@ -30,18 +30,18 @@ class ContainerShadowCommon extends StatelessWidget {
       height: size?.height,
       alignment: Alignment.center,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(radius ?? 18),
+        borderRadius: BorderRadius.circular(radius ?? 12),
         color: color ?? const Color(0xFFE3EDF7),
         boxShadow: [
-          const BoxShadow(
-            color: Colors.grey,
-            spreadRadius: 0,
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.5),
+            spreadRadius: 1,
             blurRadius: 5,
-            offset: Offset(2, 2),
+            offset: const Offset(2, 2),
           ),
           BoxShadow(
-            color: colorShadowTopLeft ?? const Color(0xFFFFFFFF),
-            spreadRadius: 0,
+            color: colorShadowTopLeft ?? const Color(0xFFFFFFFF).withOpacity(0.8),
+            spreadRadius: 1,
             blurRadius: 5,
             offset: const Offset(-2, -2),
           ),

@@ -2,25 +2,24 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:the_better_life/features/drink_water/providers/drink/drink_provider.dart';
+import 'package:the_better_life/widgets/common/base_appbar.dart';
 import 'package:the_better_life/widgets/container/container_shadow_common.dart';
 
-class HistoryScreen extends StatefulWidget {
-  const HistoryScreen({Key? key}) : super(key: key);
+class HistoryWaterScreen extends StatefulWidget {
+  const HistoryWaterScreen({Key? key}) : super(key: key);
 
   @override
-  State<HistoryScreen> createState() => _HistoryScreenState();
+  State<HistoryWaterScreen> createState() => _HistoryWaterScreenState();
 }
 
-class _HistoryScreenState extends State<HistoryScreen> {
+class _HistoryWaterScreenState extends State<HistoryWaterScreen> {
   late TextTheme textTheme;
 
   @override
   Widget build(BuildContext context) {
     textTheme = Theme.of(context).textTheme;
     return Scaffold(
-      appBar: AppBar(
-        title: Text('${'TXT_HISTORY'.tr()} ${"TXT_DRINK_WATER".tr()}'),
-      ),
+      appBar: BaseAppBar(title: 'TXT_HISTORY_WATER'.tr()),
       body: Consumer<DrinkProvider>(
         builder: (context, provider, child) {
           return provider.listHistoryMonth.isNotEmpty
@@ -28,7 +27,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
                   shrinkWrap: true,
                   itemCount: provider.listHistoryMonth.length,
                   scrollDirection: Axis.vertical,
-                  padding: const EdgeInsets.symmetric(horizontal: 24),
+                  padding: const EdgeInsets.all(24),
                   itemBuilder: (context, index) {
                     return _buildItem(
                       result: '${provider.listHistoryMonth[index].result}',

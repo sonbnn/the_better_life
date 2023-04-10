@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 import 'package:the_better_life/features/drink_water/providers/drink/drink_provider.dart';
 import 'package:the_better_life/features/drink_water/providers/page/page_provider.dart';
 import 'package:the_better_life/features/drink_water/providers/user/user_provider.dart';
+import 'package:the_better_life/features/go_bed/provider/go_bed_provider.dart';
 import 'package:the_better_life/providers/common/connectivity_provider.dart';
 import 'package:the_better_life/providers/common/theme_provider.dart';
 import 'package:the_better_life/services/locator.dart';
@@ -74,8 +75,8 @@ void main() async {
         ChangeNotifierProvider(create: (context) => ConnectivityProvider()),
         ChangeNotifierProvider(create: (context) => PageProvider()),
         ChangeNotifierProvider(create: (context) => UserProvider()),
-        //water
         ChangeNotifierProvider(create: (context) => DrinkProvider()),
+        ChangeNotifierProvider(create: (context) => GoBedProvider()),
       ],
       child: EasyLocalization(
         supportedLocales: const [Locale('en'), Locale('vi')],

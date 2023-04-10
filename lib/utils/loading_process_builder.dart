@@ -17,9 +17,9 @@ abstract class LoadingProcessBuilder {
             child: Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(12),
-                color: Color(0xFFFCFCFC).withOpacity(0.08),
+                color: const Color(0xFFFCFCFC).withOpacity(0.08),
                 border: Border.all(
-                  color: Color(0xFFFCFCFC).withOpacity(0.16),
+                  color: const Color(0xFFFCFCFC).withOpacity(0.16),
                 )
               ),
               width: 100,
@@ -28,9 +28,9 @@ abstract class LoadingProcessBuilder {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Lottie.asset('assets/json/loading.json'),
+                  Lottie.asset('assets/jsons/lottie/loading.json'),
                   SizedBox(height: isShowText! ? 15 : 0),
-                  isShowText ?  Text(
+                  isShowText ?  const Text(
                     'Verifying',
                     style: TextStyle(
                       color: Color(0xFFFFE87B),
@@ -38,7 +38,7 @@ abstract class LoadingProcessBuilder {
                       fontSize: 12,
                       decoration: TextDecoration.none
                     ),
-                  ) : SizedBox()
+                  ) : const SizedBox()
                 ],
               )
             ),
