@@ -63,5 +63,12 @@
   "TXT_CHANGE_INFO": "Thông tin đã thay đổi thành công",
   "TXT_CONGRATULATIONS": "Xin chúc mừng",
   "TXT_CONGRATULATIONS_DESCRIPTION": "Hôm nay bạn đã hoàn thành mục tiêu",
-  "TXT_SCHEDULE": "Lịch biểu"
+  "TXT_SCHEDULE": "Lịch biểu",
+  "TXT_SLEEP_CHART": "Sơ đồ giấc ngủ",
+  "TXT_SLEEP_HISTORY30": "Lịch sử giấc ngủ trong 30 ngày qua",
+  "TXT_PLEASE_CHOOSE_DATE_TIME": "Vui lòng chọn giờ đi ngủ và giờ thức dậy",
+  "TXT_SAVE_SLEEP_SUCCESS": "Save sleep time successfully",
+  "TXT_ERR_SLEEP_BEFORE": "Thời gian ngủ không thể sau thời gian thức dậy",
+  "TXT_TOTAL_HOUR": "Tổng số giờ",
+  "TXT_DATE": "Ngày"
 }

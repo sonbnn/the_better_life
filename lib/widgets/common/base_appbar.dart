@@ -23,12 +23,9 @@ class BaseAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
       leading: Navigator.of(context).canPop()
-          ? GestureDetector(
-              onTap: () => Navigator.of(context).pop(),
-              child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: ConstantSize.spaceMargin),
-                child: const Icon(Icons.arrow_back_ios_sharp),
-              ),
+          ? IconButton(
+              onPressed: () => Navigator.of(context).pop(),
+              icon: const Icon(Icons.arrow_back_ios_sharp),
             )
           : const SizedBox(),
       centerTitle: centerTitle ?? true,

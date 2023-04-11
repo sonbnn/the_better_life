@@ -5,7 +5,7 @@ import 'package:the_better_life/configs/constants/constant_size.dart';
 import 'package:the_better_life/features/bmi_caculator/screen/bmi_calculator_sreen.dart';
 import 'package:the_better_life/features/drink_water/providers/page/page_provider.dart';
 import 'package:the_better_life/features/drink_water/screens/home_water/water_screen.dart';
-import 'package:the_better_life/features/go_bed/sleep_screen.dart';
+import 'package:the_better_life/features/go_bed/screen/sleep_screen.dart';
 import 'package:the_better_life/features/screens/setting/setting_screen.dart';
 import 'package:the_better_life/widgets/container/container_shadow_common.dart';
 

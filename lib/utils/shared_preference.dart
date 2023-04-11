@@ -4,6 +4,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:the_better_life/configs/styles/theme.dart';
 import 'package:the_better_life/features/drink_water/model/user.dart';
 import 'package:the_better_life/features/drink_water/model/watter_history.dart';
+import 'package:the_better_life/features/go_bed/model/history_sleep.dart';
 
 class SharedPrefsService {
   // common
@@ -138,5 +139,17 @@ class SharedPrefsService {
     var prefs = await SharedPreferences.getInstance();
     prefs.setString('currentDay', currentDay);
   }
-  //
+
+
+  static Future<List<HistorySleepModel>> getHistorySleep() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    final String? info = prefs.getString('historySleep');
+    final List<HistorySleepModel> historySleep = HistorySleepModel.decode(info ?? '');
+    return historySleep;
+  }
+
+  static Future<void> saveHistorySleep(List<HistorySleepModel> historySleep) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('historySleep', jsonEncode(historySleep));
+  }
 }

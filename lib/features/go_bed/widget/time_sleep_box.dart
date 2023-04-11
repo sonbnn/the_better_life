@@ -25,9 +25,10 @@ class _TimeSleepBoxState extends State<TimeSleepBox> {
       padding: EdgeInsets.symmetric(horizontal: ConstantSize.spaceMargin, vertical: 12),
       margin: EdgeInsets.all(ConstantSize.spaceMargin),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text('TXT_SCHEDULE'.tr(), style: theme.textTheme.headline5),
-          const SizedBox(height: 12),
+          const Divider(),
           Row(
             children: [
               _item(
@@ -89,7 +90,7 @@ class _TimeSleepBoxState extends State<TimeSleepBox> {
             children: [
               Icon(iconData, size: 20),
               const SizedBox(width: 4),
-              Text(title, style: theme.textTheme.bodyText1),
+              Text(title, style: theme.textTheme.bodyText2),
             ],
           ),
           Text(time, style: theme.textTheme.headline5?.copyWith(color: theme.primaryColor)),

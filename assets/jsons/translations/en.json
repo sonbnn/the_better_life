@@ -63,5 +63,15 @@
   "TXT_CHANGE_INFO": "Successfully changed information",
   "TXT_CONGRATULATIONS": "Congratulations",
   "TXT_CONGRATULATIONS_DESCRIPTION": "You accomplished your goal today",
-  "TXT_SCHEDULE": "Schedule"
+  "TXT_SCHEDULE": "Schedule",
+  "TXT_SLEEP_CHART": "Sleep chart",
+  "TXT_SLEEP_HISTORY30": "Sleep history of the last 30 days",
+  "TXT_CHOOSE_TIME": "Choose time",
+  "TXT_PLEASE_CHOOSE_DATE_TIME": "Please choose a bedtime and wake up time",
+  "TXT_SAVE_SLEEP_SUCCESS": "Save sleep time successfully",
+  "TXT_ERR_SLEEP_BEFORE": "Sleep time can't after wake up time",
+  "TXT_TOTAL_HOUR": "Total hours",
+  "TXT_DATE": "Date"
 }
+
+

@@ -1,9 +1,12 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:the_better_life/configs/constants/constant_size.dart';
 import 'package:the_better_life/configs/constants/constant_water.dart';
+import 'package:the_better_life/configs/constants/constants.dart';
 import 'package:the_better_life/configs/router/routing_name.dart';
 import 'package:the_better_life/helper/sound_controller.dart';
 import 'package:the_better_life/utils/shared_preference.dart';
+import 'package:workmanager/workmanager.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -16,6 +19,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
+    Workmanager().initialize(callBackDispatcher, isInDebugMode: true);
     WidgetsBinding.instance.addPostFrameCallback(
       (timeStamp) async {
         initWater();
@@ -35,9 +39,16 @@ class _SplashScreenState extends State<SplashScreen> {
     );
   }
 
+  void callBackDispatcher(){
+    Workmanager().executeTask((taskName, inputData) {
+      (){};
+      return Future.value(true);
+    });
+  }
+
   void initWater() {
     DateTime dateTime = DateTime.now();
-    ConstantWater.dateNow = "${dateTime.day}/${dateTime.month}";
+    ConstantWater.dateNow = DateFormat(Constants.formatDateMonth).format(dateTime);
   }
 
   void initSize() {

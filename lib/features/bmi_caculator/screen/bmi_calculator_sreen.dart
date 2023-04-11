@@ -21,6 +21,7 @@ class _BMICalculatorScreenState extends State<BMICalculatorScreen> {
   late ThemeData theme;
   late Size size;
   late double sizeBox;
+
   @override
   Widget build(BuildContext context) {
     theme = Theme.of(context);
@@ -35,8 +36,9 @@ class _BMICalculatorScreenState extends State<BMICalculatorScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
+                  const SizedBox(height: 12),
                   Padding(
-                    padding: EdgeInsets.all(ConstantSize.spaceMargin),
+                    padding: EdgeInsets.symmetric(horizontal: ConstantSize.spaceMargin),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [

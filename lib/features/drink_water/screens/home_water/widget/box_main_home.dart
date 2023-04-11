@@ -5,6 +5,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:lottie/lottie.dart';
+import 'package:the_better_life/configs/constants/constants.dart';
 import 'package:the_better_life/configs/router/routing_name.dart';
 import 'package:the_better_life/features/drink_water/providers/drink/drink_provider.dart';
 import 'package:the_better_life/features/drink_water/providers/user/user_provider.dart';
@@ -44,7 +45,7 @@ class _BoxMainHomeState extends State<BoxMainHome> {
     size = MediaQuery.of(context).size;
     double oldValue = widget.drinkProvider.progress;
     DateTime today = DateTime.now();
-    String timeNow = "${today.hour}:${today.minute}";
+    String timeNow = DateFormat(Constants.formatHour).format(today);
     String result =
         '${widget.drinkProvider.amountDrinkToday.toStringAsFixed(0)} / ${widget.userProvider.user.recommendedMilli?.toStringAsFixed(0)}';
     theme = Theme.of(context);

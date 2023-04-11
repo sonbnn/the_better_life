@@ -22,6 +22,8 @@ abstract class Constants {
 
   static String formatDate = 'dd/MM/yyyy';
 
+  static String formatDateMonth = 'dd/MM';
+
   static String formatDateTime = 'dd/MM/yyyy HH:mm:ss';
 
   static String formatDateHour = 'HH:mm MM/dd/yyyy';
