@@ -18,17 +18,17 @@ import 'package:the_better_life/widgets/circular_percent_indicator.dart';
 import 'package:the_better_life/widgets/container/container_shadow_common.dart';
 import 'package:material_dialogs/material_dialogs.dart';
 
-class BoxMainHome extends StatefulWidget {
+class BoxMainWater extends StatefulWidget {
   final DrinkProvider drinkProvider;
   final UserProvider userProvider;
 
-  const BoxMainHome({Key? key, required this.drinkProvider, required this.userProvider}) : super(key: key);
+  const BoxMainWater({Key? key, required this.drinkProvider, required this.userProvider}) : super(key: key);
 
   @override
-  State<BoxMainHome> createState() => _BoxMainHomeState();
+  State<BoxMainWater> createState() => _BoxMainWaterState();
 }
 
-class _BoxMainHomeState extends State<BoxMainHome> {
+class _BoxMainWaterState extends State<BoxMainWater> {
   List _listWater = [];
   final TextEditingController _controller = TextEditingController();
   late ThemeData theme;
@@ -106,9 +106,7 @@ class _BoxMainHomeState extends State<BoxMainHome> {
                                 widget.drinkProvider.addWater();
                                 widget.drinkProvider
                                     .addHistoryDay(timeRef: timeNow, amount: widget.drinkProvider.amount);
-                                if (sizeWatter * 100 == 100.0) {
-                                  showResultDialog();
-                                }
+                                showResultDialog();
                               },
                               color: theme.primaryColor,
                               size: const Size(110, 50),
@@ -269,26 +267,29 @@ class _BoxMainHomeState extends State<BoxMainHome> {
     });
   }
 
-  Future<void> showResultDialog() {
-    return Dialogs.materialDialog(
-      color: theme.backgroundColor,
-      title: 'TXT_CONGRATULATIONS'.tr(),
-      msg: 'TXT_CONGRATULATIONS_DESCRIPTION'.tr(),
-      titleStyle: theme.textTheme.headline5!.copyWith(color: theme.primaryColor),
-      msgStyle: theme.textTheme.bodyText1!,
-      lottieBuilder: Lottie.asset(
-        'assets/jsons/lottie/congratulations_water.json',
-
-      ),
-      context: context,
-      actions: [
-        ButtonShadowOuter(
-          action: () {
-            Navigator.of(context).pop();
-          },
-          child: Text('TXT_CONFIRM'.tr(), style: theme.textTheme.button),
+  Future<void>? showResultDialog() {
+    if (widget.drinkProvider.amountDrinkToday >= (widget.userProvider.user.recommendedMilli ?? 0)) {
+      return Dialogs.materialDialog(
+        color: theme.backgroundColor,
+        title: 'TXT_CONGRATULATIONS'.tr(),
+        msg: 'TXT_CONGRATULATIONS_DESCRIPTION'.tr(),
+        titleStyle: theme.textTheme.headline5!.copyWith(color: theme.primaryColor),
+        msgStyle: theme.textTheme.bodyText1!,
+        lottieBuilder: Lottie.asset(
+          'assets/jsons/lottie/congratulations_water.json',
         ),
-      ],
-    );
+        context: context,
+        actions: [
+          ButtonShadowOuter(
+            action: () {
+              Navigator.of(context).pop();
+            },
+            child: Text('TXT_CONFIRM'.tr(), style: theme.textTheme.button),
+          ),
+        ],
+      );
+    }else{
+      return null;
+    }
   }
 }

@@ -45,7 +45,7 @@ class _WaterScreenState extends State<WaterScreen> with TickerProviderStateMixin
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                BoxMainHome(
+                BoxMainWater(
                   drinkProvider: providerDrink,
                   userProvider: providerUser,
                 ),
