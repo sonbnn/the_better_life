@@ -18,6 +18,7 @@ class _HistoryWaterScreenState extends State<HistoryWaterScreen> {
   @override
   Widget build(BuildContext context) {
     textTheme = Theme.of(context).textTheme;
+    ThemeData theme = Theme.of(context);
     return Scaffold(
       appBar: BaseAppBar(title: 'TXT_HISTORY_WATER'.tr()),
       body: Consumer<DrinkProvider>(
@@ -35,7 +36,24 @@ class _HistoryWaterScreenState extends State<HistoryWaterScreen> {
                     );
                   },
                 )
-              : const Center(child: Text('No data!'));
+              : SizedBox(
+                  width: double.infinity,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(
+                        Icons.sim_card_alert_outlined,
+                        color: theme.disabledColor,
+                        size: 100,
+                      ),
+                      Text(
+                        'TXT_NULL_DATA_WATER_HISTORY'.tr(),
+                        textAlign: TextAlign.center,
+                        style: textTheme.bodyText1,
+                      ),
+                    ],
+                  ),
+                );
         },
       ),
     );

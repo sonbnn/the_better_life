@@ -32,7 +32,7 @@ class _TimeSleepBoxState extends State<TimeSleepBox> {
           Row(
             children: [
               _item(
-                time: '${widget.provider.user.bedTime}',
+                time: widget.provider.user.bedTime ?? '___',
                 title: 'TXT_BEDTIME'.tr(),
                 iconData: Icons.bed_rounded,
                 actionEdit: () async {
@@ -51,7 +51,7 @@ class _TimeSleepBoxState extends State<TimeSleepBox> {
                 },
               ),
               _item(
-                time: '${widget.provider.user.wakeUpTime}',
+                time: widget.provider.user.wakeUpTime ?? '___',
                 title: 'TXT_WAKE_UP_TIME'.tr(),
                 actionEdit: () async {
                   TimeOfDay? newTime = await showTimePicker(

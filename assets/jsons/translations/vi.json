@@ -70,5 +70,15 @@
   "TXT_SAVE_SLEEP_SUCCESS": "Save sleep time successfully",
   "TXT_ERR_SLEEP_BEFORE": "Thời gian ngủ không thể sau thời gian thức dậy",
   "TXT_TOTAL_HOUR": "Tổng số giờ",
-  "TXT_DATE": "Ngày"
+  "TXT_DATE": "Ngày",
+  "TXT_CHOOSE_YOUR_BEDTIME_SCHEDULE": "Chọn lịch đi ngủ của bạn!",
+  "TXT_PREASE_SELECT_GENDER_AGE": "Vui lòng chọn giới tính và độ tuổi của bạn!",
+  "TXT_PLEASE_SELECT_WEIGHT_HEIGHT": "Vui lòng chọn cân nặng và chiều cao của bạn!",
+  "TXT_PREASE_SELECT_BEDTIME_SCHEDULE": "Vui lòng chọn lịch đi ngủ!",
+  "TXT_YOUR_AGE": "Tuổi của bạn",
+  "TXT_NULL_DATA_WATER_HISTORY": "Không có lịch sử uống nước!\nHãy hoàn thành bất kỳ ngày uống nước nào, lịch sử sẽ được cập nhật!\n",
+  "TXT_NULL_DATA_BMI_HISTORY": "Bạn chưa lưu bất kỳ lần đo chỉ số BMI nào!",
+  "TXT_BMI_HISTORY": "Lịch sử đo chỉ số BMI",
+  "TXT_SAVE_SUCCESS": "Lưu thành công!",
+  "TXT_DELETE_SUCCESSFUL": "Xóa thành công!"
 }

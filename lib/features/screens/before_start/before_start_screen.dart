@@ -1,11 +1,12 @@
 import 'package:core/core.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:the_better_life/configs/constants/constant_size.dart';
 import 'package:the_better_life/configs/router/routing_name.dart';
 import 'package:the_better_life/features/drink_water/providers/drink/drink_provider.dart';
 import 'package:the_better_life/features/drink_water/providers/user/user_provider.dart';
 import 'package:the_better_life/features/screens/before_start/widget/select_gender_age.dart';
-import 'package:the_better_life/features/screens/before_start/widget/select_sleep.dart';
 import 'package:the_better_life/features/screens/before_start/widget/select_wake_up.dart';
 import 'package:the_better_life/features/screens/before_start/widget/select_weight_height.dart';
 import 'package:the_better_life/utils/snackbar_builder.dart';
@@ -21,12 +22,7 @@ class BeforeStartScreen extends StatefulWidget {
 
 class _BeforeStartScreenState extends State<BeforeStartScreen> {
   final PageStorageBucket bucket = PageStorageBucket();
-  List<Widget> screens = [
-    const SelectGenderAge(),
-    const SelectWeightHeight(),
-    const SelectWakeUp(),
-    const SelectSleep()
-  ];
+  List<Widget> screens = [const SelectGenderAge(), const SelectWeightHeight(), const SelectWakeUp()];
   late DrinkProvider drinkProvider;
   late ThemeData theme;
 
@@ -66,13 +62,6 @@ class _BeforeStartScreenState extends State<BeforeStartScreen> {
                         data: providerUser.user.wakeUpTime ?? '',
                         index: 2,
                         isHide: providerUser.user.weight == null,
-                      ),
-                      _buildTopItem(
-                        srcIcon: 'assets/icons/ic_sleep.svg',
-                        data: providerUser.user.bedTime ?? '',
-                        index: 3,
-                        isHide: providerUser.user.bedTime == null,
-
                       ),
                     ],
                   ),
@@ -120,7 +109,7 @@ class _BeforeStartScreenState extends State<BeforeStartScreen> {
     return Column(
       children: [
         ContainerShadowCommon(
-          size: const Size(76, 40),
+          size: Size(ConstantSize.screenWidth / 4, 40),
           padding: const EdgeInsets.all(10),
           color: index <= drinkProvider.currentIndexPage ? theme.primaryColor : theme.backgroundColor,
           radius: 12,
@@ -149,29 +138,22 @@ class _BeforeStartScreenState extends State<BeforeStartScreen> {
         if (userProvider.user.gender != null && userProvider.user.age != null) {
           drinkProvider.setCurrentIndexPage(drinkProvider.currentIndexPage + 1);
         } else {
-          SnackBarBuilder.showSnackBar(content: 'Select your gender and age!', status: false);
+          SnackBarBuilder.showSnackBar(content: 'TXT_PLEASE_SELECT_GENDER_AGE'.tr(), status: false);
         }
         break;
       case 1:
         if (userProvider.user.weight != null && userProvider.user.height != null) {
           drinkProvider.setCurrentIndexPage(drinkProvider.currentIndexPage + 1);
         } else {
-          SnackBarBuilder.showSnackBar(content: 'Select your weight and height!', status: false);
+          SnackBarBuilder.showSnackBar(content: 'TXT_PLEASE_SELECT_WEIGHT_HEIGHT'.tr(), status: false);
         }
         break;
       case 2:
-        if (userProvider.user.wakeUpTime != null) {
-          drinkProvider.setCurrentIndexPage(drinkProvider.currentIndexPage + 1);
-        } else {
-          SnackBarBuilder.showSnackBar(content: 'Select your wakeup time!', status: false);
-        }
-        break;
-      case 3:
-        if (userProvider.user.bedTime != null) {
+        if (userProvider.user.wakeUpTime != null && userProvider.user.bedTime != null) {
           userProvider.setWaterQuantity();
           Navigator.pushNamed(context, RoutingNameConstants.LetGoScreen);
         } else {
-          SnackBarBuilder.showSnackBar(content: 'Select your sleep time!', status: false);
+          SnackBarBuilder.showSnackBar(content: 'TXT_PLEASE_SELECT_BEDTIME_SCHEDULE'.tr(), status: false);
         }
         break;
     }

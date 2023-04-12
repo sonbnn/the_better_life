@@ -1,6 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:the_better_life/configs/constants/constant_size.dart';
 import 'package:the_better_life/configs/constants/constant_water.dart';
 import 'package:the_better_life/configs/constants/constants.dart';
@@ -24,7 +23,7 @@ class _SplashScreenState extends State<SplashScreen> {
       (timeStamp) async {
         initWater();
         initSize();
-        _initGoogleMobileAds();
+        // _initGoogleMobileAds();
         SoundController.initSound();
         final user = await SharedPrefsService.getUserInfo();
         if (user.recommendedMilli != null && user.recommendedMilli != 0) {
@@ -45,9 +44,9 @@ class _SplashScreenState extends State<SplashScreen> {
     ConstantWater.dateNow = DateFormat(Constants.formatDateMonth).format(dateTime);
   }
 
-  Future<InitializationStatus> _initGoogleMobileAds() {
-    return MobileAds.instance.initialize();
-  }
+  // Future<InitializationStatus> _initGoogleMobileAds() {
+  //   return MobileAds.instance.initialize();
+  // }
 
   void initSize() {
     Size size = MediaQuery.of(context).size;

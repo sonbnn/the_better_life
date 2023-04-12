@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:the_better_life/configs/router/routing_name.dart';
+import 'package:the_better_life/features/bmi_caculator/screen/bmi_history.dart';
 import 'package:the_better_life/features/bmi_caculator/screen/result_bmi.dart';
 import 'package:the_better_life/features/drink_water/screens/history_water_screen.dart';
 import 'package:the_better_life/features/go_bed/screen/chart_sleep_screen.dart';
@@ -27,6 +28,7 @@ abstract class RoutesConstants {
     RoutingNameConstants.BMIResultScreen: (BuildContext context) => const BMIResultScreen(),
     RoutingNameConstants.EditPersonalScreen: (BuildContext context) => const EditPersonalScreen(),
     RoutingNameConstants.ChartSleepScreen: (BuildContext context) => const ChartSleepScreen(),
+    RoutingNameConstants.BMIHistoryScreen: (BuildContext context) => const BMIHistoryScreen(),
 
   };
 }

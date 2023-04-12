@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:the_better_life/configs/constants/constant_size.dart';
 import 'package:the_better_life/configs/router/routing_name.dart';
 import 'package:the_better_life/features/drink_water/providers/user/user_provider.dart';
+import 'package:the_better_life/utils/loading_process_builder.dart';
 import 'package:the_better_life/widgets/buttons/button_shadow_out.dart';
 import 'package:the_better_life/widgets/common/base_appbar.dart';
 import 'package:the_better_life/widgets/input/box_plus_minus.dart';
@@ -23,12 +24,30 @@ class _BMICalculatorScreenState extends State<BMICalculatorScreen> {
   late double sizeBox;
 
   @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      Provider.of<UserProvider>(context, listen: false).getHistoryBMI();
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     theme = Theme.of(context);
     size = MediaQuery.of(context).size;
     sizeBox = (size.width / 2) - ConstantSize.spaceMargin - 6;
     return Scaffold(
-      appBar: BaseAppBar(title: 'TXT_BMI_CALCULATOR'.tr()),
+      appBar: BaseAppBar(
+        title: 'TXT_BMI_CALCULATOR'.tr(),
+        actions: [
+          IconButton(
+            onPressed: () {
+              Navigator.pushNamed(context, RoutingNameConstants.BMIHistoryScreen);
+            },
+            icon:  Icon(Icons.history, color: theme.primaryColor),
+          ),
+        ],
+      ),
       body: SafeArea(
         child: Consumer<UserProvider>(
           builder: (context, userProvider, child) {
@@ -76,13 +95,13 @@ class _BMICalculatorScreenState extends State<BMICalculatorScreen> {
                         BoxPlusMinus(
                           actionPlus: () => userProvider.plusAge(1),
                           actionMinus: () => userProvider.plusAge(-1),
-                          title: 'Your age',
+                          title: 'TXT_YOUR_AGE'.tr(),
                           value: '${userProvider.user.age?.toStringAsFixed(0)}',
                         ),
                         BoxPlusMinus(
                           actionPlus: () => userProvider.plusHeight(1),
                           actionMinus: () => userProvider.plusHeight(-1),
-                          title: 'Your height',
+                          title: 'TXT_YOUR_HEIGHT'.tr(),
                           value: '${userProvider.user.height?.toStringAsFixed(0)}',
                         ),
                       ],
@@ -97,8 +116,12 @@ class _BMICalculatorScreenState extends State<BMICalculatorScreen> {
                       left: ConstantSize.spaceMargin,
                     ),
                     action: () {
+                      LoadingProcessBuilder.showProgressDialog();
                       userProvider.getBMI();
-                      Navigator.pushNamed(context, RoutingNameConstants.BMIResultScreen);
+                      Future.delayed(const Duration(milliseconds: 500), () {
+                        LoadingProcessBuilder.closeProgressDialog();
+                        Navigator.pushNamed(context, RoutingNameConstants.BMIResultScreen);
+                      });
                     },
                     child: Text(
                       'Calculate BMI',

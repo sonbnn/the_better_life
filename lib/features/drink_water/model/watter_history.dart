@@ -28,8 +28,14 @@ class WaterHistoryDay {
   static String encode(List<WaterHistoryDay> dataHistory) =>
       json.encode(dataHistory.map<Map<String, dynamic>>((music) => WaterHistoryDay.toMap(music)).toList());
 
-  static List<WaterHistoryDay> decode(String dataHistory) =>
-      (json.decode(dataHistory) as List<dynamic>).map<WaterHistoryDay>((item) => WaterHistoryDay.fromJson(item)).toList();
+  static List<WaterHistoryDay> decode(String? dataHistory) {
+    if (dataHistory != null) {
+      return (json.decode(dataHistory) as List<dynamic>)
+          .map<WaterHistoryDay>((i) => WaterHistoryDay.fromJson(i))
+          .toList();
+    }
+    return [];
+  }
 
   @override
   String toString() {
@@ -58,21 +64,22 @@ class WaterHistoryMonth {
   }
 
   static Map<String, dynamic> toMap(WaterHistoryMonth historyMonth) => {
-    'result': historyMonth.result,
-    'date': historyMonth.date,
-  };
+        'result': historyMonth.result,
+        'date': historyMonth.date,
+      };
 
   static String encode(List<WaterHistoryMonth> dataHistory) =>
       json.encode(dataHistory.map<Map<String, dynamic>>((e) => WaterHistoryMonth.toMap(e)).toList());
 
   static List<WaterHistoryMonth> decode(String e) {
-    if(e.isNotEmpty){
-      return (json.decode(e) as List<dynamic>).map<WaterHistoryMonth>((item) => WaterHistoryMonth.fromJson(item)).toList();
-    }else{
+    if (e.isNotEmpty) {
+      return (json.decode(e) as List<dynamic>)
+          .map<WaterHistoryMonth>((item) => WaterHistoryMonth.fromJson(item))
+          .toList();
+    } else {
       return [];
     }
   }
-
 
   @override
   String toString() {

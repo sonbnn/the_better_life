@@ -1,16 +1,22 @@
 import 'dart:math';
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:the_better_life/configs/constants/constant_water.dart';
+import 'package:the_better_life/features/bmi_caculator/model/history_bmi.dart';
 import 'package:the_better_life/features/drink_water/model/user.dart';
+import 'package:the_better_life/utils/loading_process_builder.dart';
 import 'package:the_better_life/utils/shared_preference.dart';
+import 'package:the_better_life/utils/snackbar_builder.dart';
 
 class UserProvider extends ChangeNotifier {
   User user = User();
   TextEditingController controllerInputWeight = TextEditingController();
   static UserProvider of(BuildContext context) => Provider.of<UserProvider>(context, listen: false);
   double bmi = 0;
+  List<BMIHistory> bmiHistory = [];
+
   void setWeight(double value) {
     user.weight = value;
     notifyListeners();
@@ -85,6 +91,23 @@ class UserProvider extends ChangeNotifier {
   void getBMI(){
     bmi = user.weight! / pow(user.height!/100,2);
     notifyListeners();
+  }
+
+  void saveBMI(BMIHistory bmiResult){
+    bmiHistory.insert(0,bmiResult);
+    SharedPrefsService.saveHistoryBMI(bmiHistory);
+    getHistoryBMI();
+  }
+  void getHistoryBMI()async{
+    bmiHistory = await SharedPrefsService.getHistoryBMI();
+    notifyListeners();
+  }
+
+  void deleteHistoryBMI(int index) {
+    bmiHistory.removeAt(index);
+    SharedPrefsService.saveHistoryBMI(bmiHistory);
+    getHistoryBMI();
+    SnackBarBuilder.showSnackBar(content: "TXT_DELETE_SUCCESSFUL".tr());
   }
 
 }

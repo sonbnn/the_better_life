@@ -6,7 +6,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:the_better_life/configs/constants/constant_size.dart';
+import 'package:the_better_life/configs/constants/constants.dart';
+import 'package:the_better_life/features/bmi_caculator/model/history_bmi.dart';
 import 'package:the_better_life/features/drink_water/providers/user/user_provider.dart';
+import 'package:the_better_life/utils/loading_process_builder.dart';
+import 'package:the_better_life/utils/snackbar_builder.dart';
 import 'package:the_better_life/widgets/buttons/button_shadow_out.dart';
 import 'package:the_better_life/widgets/common/base_appbar.dart';
 import 'package:the_better_life/widgets/container/container_shadow_common.dart';
@@ -33,11 +37,11 @@ class _BMIResultScreenState extends State<BMIResultScreen> {
     textTheme = Theme.of(context).textTheme;
     return Scaffold(
       appBar: BaseAppBar(title: 'TXT_RESULT_BMI'.tr()),
-      body: Consumer<UserProvider>(
-        builder: (context, provider, child) {
-          return Padding(
-            padding: EdgeInsets.symmetric(horizontal: ConstantSize.spaceMargin),
-            child: Column(
+      body: Padding(
+        padding: EdgeInsets.symmetric(horizontal: ConstantSize.spaceMargin),
+        child: Consumer<UserProvider>(
+          builder: (context, provider, child) {
+            return Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 ConstantSize.isSmallScreen
@@ -47,10 +51,15 @@ class _BMIResultScreenState extends State<BMIResultScreen> {
                   '${'TXT_YOUR_BMI_IS'.tr()} ${'${bmiResult[getIndex(provider.bmi)]['title']}'.tr().toLowerCase()}',
                   style: textTheme.headline6,
                 ),
-                Text(
-                  provider.bmi.toStringAsFixed(2),
-                  style: textTheme.headline3?.copyWith(fontSize: 60, fontWeight: FontWeight.w900),
-                ),
+                TweenAnimationBuilder(
+                    duration: const Duration(seconds: 1),
+                    tween: Tween<double>(begin: 0.0, end: provider.bmi),
+                    builder: (context, double bmiTXT, child) {
+                      return Text(
+                        bmiTXT.toStringAsFixed(2),
+                        style: textTheme.headline3?.copyWith(fontSize: 60, fontWeight: FontWeight.w900),
+                      );
+                    }),
                 Text(
                   getInterpretation(provider.bmi),
                   style: textTheme.bodyText1,
@@ -81,11 +90,12 @@ class _BMIResultScreenState extends State<BMIResultScreen> {
                     padding: EdgeInsets.zero,
                     itemBuilder: (context, index) {
                       return _itemBMI(
-                          colorIc: Color(int.parse(bmiResult[index]['color'])),
-                          title: bmiResult[index]['title'],
-                          numeral: bmiResult[index]['numeral'],
-                          index: index,
-                          bmi: provider.bmi);
+                        colorIc: Color(int.parse(bmiResult[index]['color'])),
+                        title: bmiResult[index]['title'],
+                        numeral: bmiResult[index]['numeral'],
+                        index: index,
+                        bmi: provider.bmi,
+                      );
                     },
                   ),
                 ),
@@ -93,15 +103,26 @@ class _BMIResultScreenState extends State<BMIResultScreen> {
                 SafeArea(
                   child: ButtonShadowOuter(
                     action: () {
-                      Navigator.pop(context);
+                      LoadingProcessBuilder.showProgressDialog();
+                      provider.saveBMI(
+                        BMIHistory(
+                          result: provider.bmi.toStringAsFixed(2),
+                          txtResult: '${bmiResult[getIndex(provider.bmi)]['title']}',
+                          time: DateFormat(Constants.formatDate).format(DateTime.now()),
+                        ),
+                      );
+                      Future.delayed(const Duration(milliseconds: 500), () {
+                        LoadingProcessBuilder.closeProgressDialog();
+                        SnackBarBuilder.showSnackBar(content: "TXT_SAVE_SUCCESS".tr(), status: true);
+                      });
                     },
-                    child: Text('TXT_CONFIRM'.tr(), style: textTheme.button),
+                    child: Text('TXT_SAVE'.tr(), style: textTheme.button),
                   ),
                 ),
               ],
-            ),
-          );
-        },
+            );
+          },
+        ),
       ),
     );
   }

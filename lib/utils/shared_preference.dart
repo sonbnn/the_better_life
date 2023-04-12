@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:the_better_life/configs/styles/theme.dart';
+import 'package:the_better_life/features/bmi_caculator/model/history_bmi.dart';
 import 'package:the_better_life/features/drink_water/model/user.dart';
 import 'package:the_better_life/features/drink_water/model/watter_history.dart';
 import 'package:the_better_life/features/go_bed/model/history_sleep.dart';
@@ -151,5 +152,17 @@ class SharedPrefsService {
   static Future<void> saveHistorySleep(List<HistorySleepModel> historySleep) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.setString('historySleep', jsonEncode(historySleep));
+  }
+
+  static Future<List<BMIHistory>> getHistoryBMI() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    final String? info = prefs.getString('historyBMI');
+    final List<BMIHistory> historyBMI = BMIHistory.decode(info ?? '');
+    return historyBMI;
+  }
+
+  static Future<void> saveHistoryBMI(List<BMIHistory> historyBMI) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('historyBMI', jsonEncode(historyBMI));
   }
 }

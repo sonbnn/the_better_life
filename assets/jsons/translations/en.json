@@ -66,12 +66,21 @@
   "TXT_SCHEDULE": "Schedule",
   "TXT_SLEEP_CHART": "Sleep chart",
   "TXT_SLEEP_HISTORY30": "Sleep history of the last 30 days",
-  "TXT_CHOOSE_TIME": "Choose time",
   "TXT_PLEASE_CHOOSE_DATE_TIME": "Please choose a bedtime and wake up time",
   "TXT_SAVE_SLEEP_SUCCESS": "Save sleep time successfully",
   "TXT_ERR_SLEEP_BEFORE": "Sleep time can't after wake up time",
   "TXT_TOTAL_HOUR": "Total hours",
-  "TXT_DATE": "Date"
+  "TXT_DATE": "Date",
+  "TXT_CHOOSE_YOUR_BEDTIME_SCHEDULE": "Choose your bedtime schedule!",
+  "TXT_PLEASE_SELECT_GENDER_AGE": "Please select your gender and age!",
+  "TXT_PLEASE_SELECT_WEIGHT_HEIGHT": "Please select your weight and height!",
+  "TXT_PLEASE_SELECT_BEDTIME_SCHEDULE": "Please select bedtime schedule!",
+  "TXT_YOUR_AGE": "Your age",
+  "TXT_NULL_DATA_WATER_HISTORY": "No history of drinking water!\nComplete any water day, history will be updated!",
+  "TXT_NULL_DATA_BMI_HISTORY": "You haven't saved any BMI measurements yet!",
+  "TXT_BMI_HISTORY": "BMI measurement history",
+  "TXT_SAVE_SUCCESS": "Save successfully!",
+  "TXT_DELETE_SUCCESSFUL": "Delete successfully!"
 }
 
 

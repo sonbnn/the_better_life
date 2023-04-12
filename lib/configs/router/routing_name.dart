@@ -14,5 +14,6 @@ abstract class RoutingNameConstants {
   static const String BMIResultScreen = '/BMIResultScreen';
   static const String EditPersonalScreen = '/EditPersonalScreen';
   static const String ChartSleepScreen = '/ChartSleepScreen';
+  static const String BMIHistoryScreen = '/BMIHistoryScreen';
 
 }
