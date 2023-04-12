@@ -76,7 +76,7 @@ class _GoBedScreenState extends State<GoBedScreen> {
                 size: const Size(34,34),
                 radius: 12,
                 padding: const EdgeInsets.all(4),
-                action: (){print(123);
+                action: (){
                   provider.saveToChart();
                 },
                 child: CommonImage(

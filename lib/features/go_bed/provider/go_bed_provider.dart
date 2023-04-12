@@ -30,7 +30,6 @@ class GoBedProvider extends ChangeNotifier {
 
   void getListHistory()async{
     dataSleep = await SharedPrefsService.getHistorySleep();
-    print(dataSleep);
     notifyListeners();
   }
 

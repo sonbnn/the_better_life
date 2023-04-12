@@ -91,6 +91,7 @@ class _EditPersonalScreenState extends State<EditPersonalScreen> {
                 size: const Size(double.infinity, 56),
                 action: () {
                   LoadingProcessBuilder.showProgressDialog();
+                  provider.setWaterQuantity();
                   provider.saveUserInfo();
                   Future.delayed(const Duration(milliseconds: 500), () {
                     LoadingProcessBuilder.closeProgressDialog();

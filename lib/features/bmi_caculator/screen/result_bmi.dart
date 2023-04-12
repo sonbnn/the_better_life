@@ -45,15 +45,15 @@ class _BMIResultScreenState extends State<BMIResultScreen> {
                     : const Expanded(child: CommonImage(url: "assets/images/img_bmi.png")),
                 Text(
                   '${'TXT_YOUR_BMI_IS'.tr()} ${'${bmiResult[getIndex(provider.bmi)]['title']}'.tr().toLowerCase()}',
-                  style: textTheme.headline5,
+                  style: textTheme.headline6,
                 ),
                 Text(
                   provider.bmi.toStringAsFixed(2),
-                  style: textTheme.headline1?.copyWith(fontSize: 60, fontWeight: FontWeight.w900),
+                  style: textTheme.headline3?.copyWith(fontSize: 60, fontWeight: FontWeight.w900),
                 ),
                 Text(
                   getInterpretation(provider.bmi),
-                  style: textTheme.headline5,
+                  style: textTheme.bodyText1,
                   textAlign: TextAlign.center,
                 ),
                 Padding(
@@ -80,7 +80,6 @@ class _BMIResultScreenState extends State<BMIResultScreen> {
                     itemCount: bmiResult.length,
                     padding: EdgeInsets.zero,
                     itemBuilder: (context, index) {
-                      print(index);
                       return _itemBMI(
                           colorIc: Color(int.parse(bmiResult[index]['color'])),
                           title: bmiResult[index]['title'],

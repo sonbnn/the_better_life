@@ -21,53 +21,47 @@ class _ChartSleepScreenState extends State<ChartSleepScreen> {
     return Scaffold(
       appBar: BaseAppBar(title: 'TXT_SLEEP_CHART'.tr()),
       body: Consumer<GoBedProvider>(builder: (context, provider, child) {
-        return Column(
-          children: [
-            Padding(
-              padding: EdgeInsets.all(ConstantSize.spaceMargin),
-              child: Expanded(
-                child: ContainerShadowCommon(
-                  padding: const EdgeInsets.all(12),
-                  child: Column(
-                    children: [
-                      Text(
-                        'TXT_SLEEP_HISTORY30'.tr(),
-                        style: theme.textTheme.bodyText1,
-                      ),
-                      const SizedBox(height: 12),
-                      SizedBox(
-                        height: ConstantSize.screenHeight *0.7,
-                        child: DChartBar(
-                          data: [
-                            {
-                              'id': 'Bar',
-                              'data': provider.dataSleep.map((e) {
-                                return {
-                                  'domain': e.time,
-                                  'measure': e.percent,
-                                };
-                              }).toList(),
-                            },
-                          ],
-                          domainLabelPaddingToAxisLine: 10,
-                          axisLineTick: 1,
-                          axisLinePointTick: 1,
-                          axisLinePointWidth: 10,
-                          axisLineColor: theme.primaryColor,
-                          measureLabelPaddingToAxisLine: 10,
-                          barColor: (barData, index, id) => theme.primaryColor,
-                          yAxisTitle: "TXT_DATE".tr(),
-                          xAxisTitle: "TXT_TOTAL_HOUR".tr(),
-                          verticalDirection: false,
-                          showBarValue: true,
-                        ),
-                      ),
+        return SafeArea(
+          child: ContainerShadowCommon(
+            padding: const EdgeInsets.all(12),
+            margin: EdgeInsets.all(ConstantSize.spaceMargin),
+            child: Column(
+              children: [
+                Text(
+                  'TXT_SLEEP_HISTORY30'.tr(),
+                  style: theme.textTheme.bodyText1,
+                ),
+                const SizedBox(height: 12),
+                SizedBox(
+                  height: ConstantSize.screenHeight * 0.7,
+                  child: DChartBar(
+                    data: [
+                      {
+                        'id': 'Bar',
+                        'data': provider.dataSleep.map((e) {
+                          return {
+                            'domain': e.time,
+                            'measure': e.percent,
+                          };
+                        }).toList(),
+                      },
                     ],
+                    domainLabelPaddingToAxisLine: 10,
+                    axisLineTick: 1,
+                    axisLinePointTick: 1,
+                    axisLinePointWidth: 10,
+                    axisLineColor: theme.primaryColor,
+                    measureLabelPaddingToAxisLine: 10,
+                    barColor: (barData, index, id) => theme.primaryColor,
+                    yAxisTitle: "TXT_DATE".tr(),
+                    xAxisTitle: "TXT_TOTAL_HOUR".tr(),
+                    verticalDirection: false,
+                    showBarValue: true,
                   ),
                 ),
-              ),
+              ],
             ),
-          ],
+          ),
         );
       }),
     );

@@ -28,8 +28,13 @@ class HistorySleepModel {
   static String encode(List<HistorySleepModel> dataHistory) =>
       json.encode(dataHistory.map<Map<String, dynamic>>((music) => HistorySleepModel.toMap(music)).toList());
 
-  static List<HistorySleepModel> decode(String dataHistory) =>
-      (json.decode(dataHistory) as List<dynamic>).map<HistorySleepModel>((item) => HistorySleepModel.fromJson(item)).toList();
+  static List<HistorySleepModel> decode(String dataHistory) {
+    if(dataHistory.isNotEmpty){
+      return (json.decode(dataHistory) as List<dynamic>).map<HistorySleepModel>((item) => HistorySleepModel.fromJson(item)).toList();
+    }
+    return [];
+  }
+
 
   @override
   String toString() {

@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:the_better_life/configs/constants/constant_size.dart';
 import 'package:the_better_life/configs/constants/constant_water.dart';
 import 'package:the_better_life/configs/constants/constants.dart';
@@ -19,11 +20,11 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    Workmanager().initialize(callBackDispatcher, isInDebugMode: true);
     WidgetsBinding.instance.addPostFrameCallback(
       (timeStamp) async {
         initWater();
         initSize();
+        _initGoogleMobileAds();
         SoundController.initSound();
         final user = await SharedPrefsService.getUserInfo();
         if (user.recommendedMilli != null && user.recommendedMilli != 0) {
@@ -39,16 +40,13 @@ class _SplashScreenState extends State<SplashScreen> {
     );
   }
 
-  void callBackDispatcher(){
-    Workmanager().executeTask((taskName, inputData) {
-      (){};
-      return Future.value(true);
-    });
-  }
-
   void initWater() {
     DateTime dateTime = DateTime.now();
     ConstantWater.dateNow = DateFormat(Constants.formatDateMonth).format(dateTime);
+  }
+
+  Future<InitializationStatus> _initGoogleMobileAds() {
+    return MobileAds.instance.initialize();
   }
 
   void initSize() {
