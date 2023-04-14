@@ -38,7 +38,7 @@ class _TimeSleepBoxState extends State<TimeSleepBox> {
                 actionEdit: () async {
                   TimeOfDay? newTime = await showTimePicker(
                     context: context,
-                    initialTime: const TimeOfDay(hour: 6, minute: 30),
+                    initialTime: const TimeOfDay(hour: 22, minute: 00),
                     helpText: 'TXT_EDIT_BED_TIME'.tr(),
                   );
                   if (newTime == null) return;
@@ -48,6 +48,7 @@ class _TimeSleepBoxState extends State<TimeSleepBox> {
                   }
                   widget.provider.setTimeSleep(newTime);
                   widget.provider.saveUserInfo();
+                  widget.provider.setNotification(DateTime.now());
                 },
               ),
               _item(
@@ -56,7 +57,7 @@ class _TimeSleepBoxState extends State<TimeSleepBox> {
                 actionEdit: () async {
                   TimeOfDay? newTime = await showTimePicker(
                     context: context,
-                    initialTime: const TimeOfDay(hour: 23, minute: 30),
+                    initialTime: const TimeOfDay(hour: 6, minute: 00),
                     helpText: 'TXT_EDIT_WAKEUP_TIME'.tr(),
                   );
                   if (newTime == null) return;
@@ -66,6 +67,7 @@ class _TimeSleepBoxState extends State<TimeSleepBox> {
                   }
                   widget.provider.setTimeWakeUp(newTime);
                   widget.provider.saveUserInfo();
+                  widget.provider.setNotification(DateTime.now());
                 },
                 iconData: Icons.access_alarms_sharp,
               )

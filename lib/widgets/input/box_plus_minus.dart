@@ -27,7 +27,7 @@ class _BoxPlusMinusState extends State<BoxPlusMinus> {
     ThemeData theme = Theme.of(context);
     double sizeBox = (size.width / 2) - ConstantSize.spaceMargin - 6;
     return ContainerShadowCommon(
-      size: Size(sizeBox, sizeBox - 28),
+      size: Size(sizeBox, sizeBox - (ConstantSize.isSmallScreen ? 20  : 30)),
       padding: const EdgeInsets.all(12),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,

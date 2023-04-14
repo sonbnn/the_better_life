@@ -165,4 +165,5 @@ class SharedPrefsService {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.setString('historyBMI', jsonEncode(historyBMI));
   }
+
 }

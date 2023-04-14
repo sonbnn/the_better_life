@@ -80,7 +80,11 @@
   "TXT_NULL_DATA_BMI_HISTORY": "You haven't saved any BMI measurements yet!",
   "TXT_BMI_HISTORY": "BMI measurement history",
   "TXT_SAVE_SUCCESS": "Save successfully!",
-  "TXT_DELETE_SUCCESSFUL": "Delete successfully!"
+  "TXT_DELETE_SUCCESSFUL": "Delete successfully!",
+  "TXT_NOTIFY_WATER_TITLE": "Friends, it's time to drink water!",
+  "TXT_NOTIFY_WATER_DES": "After drinking water, please go to the app to add the amount of water you drank!",
+  "TXT_NOTIFY_SLEEP": "Friend, it's almost bedtime!",
+  "TXT_NOTIFY_SLEEP_DES": "15 minutes until your bedtime."
 }
 
 

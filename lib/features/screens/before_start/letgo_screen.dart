@@ -15,11 +15,21 @@ class LetGoScreen extends StatefulWidget {
 
 class _LetGoScreenState extends State<LetGoScreen> {
   @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      Provider.of<UserProvider>(context, listen: false).saveUserInfo();
+      Provider.of<DrinkProvider>(context, listen: false).setCurrentDay();
+      Provider.of<UserProvider>(context, listen: false).setNotification(DateTime.now());
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     TextTheme textTheme = Theme.of(context).textTheme;
     return Scaffold(
-      body: Consumer2<UserProvider, DrinkProvider>(
-        builder: (context, providerUser, providerDrink, child) {
+      body: Consumer<UserProvider>(
+        builder: (context, providerUser, child) {
           return Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -30,9 +40,7 @@ class _LetGoScreenState extends State<LetGoScreen> {
                 child: ButtonShadowOuter(
                   size: const Size(double.infinity, 56),
                   action: () {
-                    providerUser.saveUserInfo();
-                    providerDrink.setCurrentDay();
-                    Navigator.pushNamed(context, RoutingNameConstants.DashBoard);
+                    Navigator.pushNamedAndRemoveUntil(context, RoutingNameConstants.DashBoard, (route) => false);
                   },
                   child: Text(
                     'TXT_LET_GO'.tr(),

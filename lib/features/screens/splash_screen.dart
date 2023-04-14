@@ -4,9 +4,9 @@ import 'package:the_better_life/configs/constants/constant_size.dart';
 import 'package:the_better_life/configs/constants/constant_water.dart';
 import 'package:the_better_life/configs/constants/constants.dart';
 import 'package:the_better_life/configs/router/routing_name.dart';
+import 'package:the_better_life/helper/notification.dart';
 import 'package:the_better_life/helper/sound_controller.dart';
 import 'package:the_better_life/utils/shared_preference.dart';
-import 'package:workmanager/workmanager.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -16,6 +16,8 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+  final NotificationService notificationService= NotificationService() ;
+
   @override
   void initState() {
     super.initState();
@@ -24,6 +26,7 @@ class _SplashScreenState extends State<SplashScreen> {
         initWater();
         initSize();
         // _initGoogleMobileAds();
+        notificationService.initNotification();
         SoundController.initSound();
         final user = await SharedPrefsService.getUserInfo();
         if (user.recommendedMilli != null && user.recommendedMilli != 0) {

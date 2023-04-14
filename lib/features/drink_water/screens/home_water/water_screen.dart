@@ -1,4 +1,3 @@
-import 'package:core/core.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -53,7 +52,7 @@ class _WaterScreenState extends State<WaterScreen> with TickerProviderStateMixin
                 Expanded(
                   child: ContainerShadowCommon(
                     size: Size(size.width - 48, double.infinity),
-                    padding: const EdgeInsets.symmetric(horizontal: 24),
+                    padding: EdgeInsets.symmetric(horizontal: ConstantSize.spaceMargin),
                     margin: EdgeInsets.only(bottom: 70 + MediaQuery.of(context).padding.bottom),
                     child: Column(
                       children: [

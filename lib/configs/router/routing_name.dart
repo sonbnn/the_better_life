@@ -5,7 +5,6 @@ abstract class RoutingNameConstants {
   static const String SplashScreen = '/Splash';
   static const String HomeScreen = '/Home';
   static const String DashBoard = '/DashBoard';
-  static const String StartScreen = '/StartScreen';
   static const String LetGoScreen = '/LetGoScreen';
   static const String SettingScreen = '/SettingScreen';
   static const String ChooseLanguageScreen = '/ChooseLanguageScreen';

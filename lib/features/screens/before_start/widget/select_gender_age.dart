@@ -2,6 +2,7 @@ import 'package:core/core.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:the_better_life/configs/constants/constant_size.dart';
 import 'package:the_better_life/features/drink_water/providers/user/user_provider.dart';
 import 'package:the_better_life/widgets/buttons/button_shadow_out.dart';
 import 'package:the_better_life/widgets/container/container_shadow_common.dart';
@@ -38,7 +39,7 @@ class _SelectGenderAgeState extends State<SelectGenderAge> {
               ),
               const SizedBox(height: 24),
               ContainerShadowCommon(
-                size: Size((size.width / 2) - 30, (size.width / 2) - 30),
+                size: Size((size.width / 2) - 30, (size.width / 2) - (ConstantSize.isSmallScreen ? 20  : 30)),
                 padding: const EdgeInsets.all(12),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,

@@ -10,6 +10,7 @@ import 'package:the_better_life/configs/router/routing_name.dart';
 import 'package:the_better_life/features/drink_water/providers/drink/drink_provider.dart';
 import 'package:the_better_life/features/drink_water/providers/user/user_provider.dart';
 import 'package:the_better_life/features/drink_water/screens/home_water/widget/draw_water.dart';
+import 'package:the_better_life/helper/format.dart';
 import 'package:the_better_life/helper/sound_controller.dart';
 import 'package:the_better_life/utils/regex.dart';
 import 'package:the_better_life/utils/snackbar_builder.dart';
@@ -45,7 +46,7 @@ class _BoxMainWaterState extends State<BoxMainWater> {
     size = MediaQuery.of(context).size;
     double oldValue = widget.drinkProvider.progress;
     DateTime today = DateTime.now();
-    String timeNow = DateFormat(Constants.formatHour).format(today);
+    String timeNow = Format.formatHour(today);
     String result =
         '${widget.drinkProvider.amountDrinkToday.toStringAsFixed(0)} / ${widget.userProvider.user.recommendedMilli?.toStringAsFixed(0)}';
     theme = Theme.of(context);

@@ -12,12 +12,10 @@ import 'package:the_better_life/features/screens/setting/choose_language.dart';
 import 'package:the_better_life/features/screens/setting/edit_personal.dart';
 import 'package:the_better_life/features/screens/setting/setting_screen.dart';
 import 'package:the_better_life/features/screens/splash_screen.dart';
-import 'package:the_better_life/features/screens/start/start_screen.dart';
 
 abstract class RoutesConstants {
   static final routes = <String, WidgetBuilder>{
     RoutingNameConstants.SplashScreen: (BuildContext context) => const SplashScreen(),
-    RoutingNameConstants.StartScreen: (BuildContext context) => const StartScreen(),
     RoutingNameConstants.BeforeStartScreen: (BuildContext context) => const BeforeStartScreen(),
     RoutingNameConstants.LetGoScreen: (BuildContext context) => const LetGoScreen(),
     RoutingNameConstants.DashBoard: (BuildContext context) => const DashBoard(),

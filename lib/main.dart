@@ -7,13 +7,11 @@ import 'package:the_better_life/features/drink_water/providers/drink/drink_provi
 import 'package:the_better_life/features/drink_water/providers/page/page_provider.dart';
 import 'package:the_better_life/features/drink_water/providers/user/user_provider.dart';
 import 'package:the_better_life/features/go_bed/provider/go_bed_provider.dart';
-import 'package:the_better_life/helper/notification.dart';
 import 'package:the_better_life/providers/common/connectivity_provider.dart';
 import 'package:the_better_life/providers/common/theme_provider.dart';
 import 'package:the_better_life/services/locator.dart';
 import 'package:the_better_life/utils/secure_storage_service.dart';
 import 'package:the_better_life/utils/shared_preference.dart';
-import 'package:workmanager/workmanager.dart';
 import 'configs/env_config.dart';
 import 'configs/router/router.dart';
 import 'configs/router/routing_name.dart';
@@ -65,15 +63,13 @@ class _MyAppState extends State<MyApp> {
   }
 }
 
+
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
   setupLocator();
   EnvConfig.setEnvironment(Environment.DEV);
-  Workmanager().initialize(
-      callbackDispatcher,
-      isInDebugMode: true
-  );
   runApp(
     MultiProvider(
       providers: [
@@ -94,12 +90,4 @@ void main() async {
       ),
     ),
   );
-}
-
-@pragma('vm:entry-point') // Mandatory if the App is obfuscated or using Flutter 3.1+
-void callbackDispatcher() {
-  Workmanager().executeTask((task, inputData) {
-    print("Native called background task: 123"); //simpleTask will be emitted here.
-    return Future.value(true);
-  });
 }

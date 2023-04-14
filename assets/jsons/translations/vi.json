@@ -80,5 +80,9 @@
   "TXT_NULL_DATA_BMI_HISTORY": "Bạn chưa lưu bất kỳ lần đo chỉ số BMI nào!",
   "TXT_BMI_HISTORY": "Lịch sử đo chỉ số BMI",
   "TXT_SAVE_SUCCESS": "Lưu thành công!",
-  "TXT_DELETE_SUCCESSFUL": "Xóa thành công!"
+  "TXT_DELETE_SUCCESSFUL": "Xóa thành công!",
+  "TXT_NOTIFY_WATER_TITLE": "Bạn ơi đến giờ uống nước rồi!",
+  "TXT_NOTIFY_WATER_DES": "Sau khi uống nước, hãy ứng dụng để thêm lượng nước bạn đã uống nhé!",
+  "TXT_NOTIFY_SLEEP": "Bạn ơi, gần đến giờ đi ngủ rồi!",
+  "TXT_NOTIFY_SLEEP_DES": "15 phút nữa là đến giờ đi ngủ của bạn."
 }

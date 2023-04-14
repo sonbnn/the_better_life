@@ -1,8 +1,11 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:the_better_life/configs/constants/constants.dart';
 import 'package:the_better_life/configs/router/routing_name.dart';
+import 'package:the_better_life/features/drink_water/providers/user/user_provider.dart';
 import 'package:the_better_life/features/screens/setting/widget/item_setting.dart';
+import 'package:the_better_life/helper/notification.dart';
 import 'package:the_better_life/widgets/common/base_appbar.dart';
 
 class SettingScreen extends StatefulWidget {
@@ -39,6 +42,14 @@ class _SettingScreenState extends State<SettingScreen> {
               icName: 'ic_setting',
               title: 'TXT_APP_VERSION'.tr(),
               onTap: () {},
+              itemRight: Text(Constants.appVersion, style: theme.textTheme.bodyText1),
+            ),
+            ItemSetting(
+              icName: 'ic_setting',
+              title: 'TXT_APP_VERSION'.tr(),
+              onTap: () {
+                Provider.of<UserProvider>(context, listen: false).setNotification(DateTime.now());
+              },
               itemRight: Text(Constants.appVersion, style: theme.textTheme.bodyText1),
             ),
           ],

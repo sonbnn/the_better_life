@@ -10,7 +10,8 @@ import 'package:the_better_life/features/screens/setting/setting_screen.dart';
 import 'package:the_better_life/widgets/container/container_shadow_common.dart';
 
 class DashBoard extends StatefulWidget {
-  const DashBoard({Key? key}) : super(key: key);
+  final String? payload;
+  const DashBoard({Key? key, this.payload}) : super(key: key);
 
   @override
   State<DashBoard> createState() => _DashBoardState();

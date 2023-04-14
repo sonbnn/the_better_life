@@ -6,13 +6,14 @@ import 'package:provider/provider.dart';
 import 'package:the_better_life/configs/constants/constant_water.dart';
 import 'package:the_better_life/features/bmi_caculator/model/history_bmi.dart';
 import 'package:the_better_life/features/drink_water/model/user.dart';
-import 'package:the_better_life/utils/loading_process_builder.dart';
+import 'package:the_better_life/helper/notification.dart';
 import 'package:the_better_life/utils/shared_preference.dart';
 import 'package:the_better_life/utils/snackbar_builder.dart';
 
 class UserProvider extends ChangeNotifier {
   User user = User();
   TextEditingController controllerInputWeight = TextEditingController();
+
   static UserProvider of(BuildContext context) => Provider.of<UserProvider>(context, listen: false);
   double bmi = 0;
   List<BMIHistory> bmiHistory = [];
@@ -71,9 +72,9 @@ class UserProvider extends ChangeNotifier {
         },
       ),
     );
+    getUserInfoData();
     notifyListeners();
   }
-
 
   void setWaterQuantity() {
     user.recommendedMilli = double.parse((((user.weight ?? 0) * 0.03) * 1000).toStringAsFixed(0));
@@ -88,17 +89,18 @@ class UserProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void getBMI(){
-    bmi = user.weight! / pow(user.height!/100,2);
+  void getBMI() {
+    bmi = user.weight! / pow(user.height! / 100, 2);
     notifyListeners();
   }
 
-  void saveBMI(BMIHistory bmiResult){
-    bmiHistory.insert(0,bmiResult);
+  void saveBMI(BMIHistory bmiResult) {
+    bmiHistory.insert(0, bmiResult);
     SharedPrefsService.saveHistoryBMI(bmiHistory);
     getHistoryBMI();
   }
-  void getHistoryBMI()async{
+
+  void getHistoryBMI() async {
     bmiHistory = await SharedPrefsService.getHistoryBMI();
     notifyListeners();
   }
@@ -110,4 +112,33 @@ class UserProvider extends ChangeNotifier {
     SnackBarBuilder.showSnackBar(content: "TXT_DELETE_SUCCESSFUL".tr());
   }
 
+  void setNotification(DateTime dateNow) async {
+    NotificationService notificationService = NotificationService();
+    int timeSleepCal = int.parse(user.bedTime?.split(':').first ?? '');
+    int timeSleepMini = int.parse(user.bedTime?.split(':').last ?? '');
+    int timeWakeUpCal = int.parse(user.wakeUpTime?.split(':').first ?? '');
+      print(timeWakeUpCal);
+      print(timeSleepCal);
+      print(timeSleepCal - 1);
+      print('----');
+
+    for (int i = timeWakeUpCal + 1; i < timeSleepCal ; i++) {
+      print(i);
+      await notificationService.showScheduledNotification(
+        id: i,
+        title: "TXT_NOTIFY_WATER_TITLE".tr(),
+        body: "TXT_NOTIFY_WATER_DES".tr(),
+        hour: i,
+        minutes: 0,
+      );
+    }
+    notificationService.showScheduledNotification(
+      id: 0000100000110,
+      title: "TXT_NOTIFY_SLEEP".tr(),
+      body: "TXT_NOTIFY_SLEEP_DES".tr(),
+      hour: timeSleepMini == 0 ?( (timeSleepCal == 0) ? 23 : (timeSleepCal - 1) ):timeSleepCal,
+      minutes: timeSleepMini == 0 ? 45 : timeSleepMini - 15,
+    );
+    print('done');
+  }
 }
