@@ -1,10 +1,8 @@
-import 'dart:convert';
-
 import 'package:core/core.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
+import 'package:the_better_life/configs/constants/constant_bmi.dart';
 import 'package:the_better_life/configs/constants/constant_size.dart';
 import 'package:the_better_life/configs/constants/constants.dart';
 import 'package:the_better_life/features/bmi_caculator/model/history_bmi.dart';
@@ -23,13 +21,11 @@ class BMIResultScreen extends StatefulWidget {
 }
 
 class _BMIResultScreenState extends State<BMIResultScreen> {
-  List bmiResult = [];
   late TextTheme textTheme;
 
   @override
   void initState() {
     super.initState();
-    initResult();
   }
 
   @override
@@ -48,7 +44,7 @@ class _BMIResultScreenState extends State<BMIResultScreen> {
                     ? const SizedBox()
                     : const Expanded(child: CommonImage(url: "assets/images/img_bmi.png")),
                 Text(
-                  '${'TXT_YOUR_BMI_IS'.tr()} ${'${bmiResult[getIndex(provider.bmi)]['title']}'.tr().toLowerCase()}',
+                  '${'TXT_YOUR_BMI_IS'.tr()} ${'${provider.bmiResult[ConstantBMI.getIndex(provider.bmi)]['title']}'.tr().toLowerCase()}',
                   style: textTheme.headline6,
                 ),
                 TweenAnimationBuilder(
@@ -61,7 +57,7 @@ class _BMIResultScreenState extends State<BMIResultScreen> {
                       );
                     }),
                 Text(
-                  getInterpretation(provider.bmi),
+                  ConstantBMI.getInterpretation(provider.bmi),
                   style: textTheme.bodyText1,
                   textAlign: TextAlign.center,
                 ),
@@ -86,13 +82,13 @@ class _BMIResultScreenState extends State<BMIResultScreen> {
                   child: ListView.builder(
                     physics: const NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
-                    itemCount: bmiResult.length,
+                    itemCount: provider.bmiResult.length,
                     padding: EdgeInsets.zero,
                     itemBuilder: (context, index) {
                       return _itemBMI(
-                        colorIc: Color(int.parse(bmiResult[index]['color'])),
-                        title: bmiResult[index]['title'],
-                        numeral: bmiResult[index]['numeral'],
+                        colorIc: Color(int.parse(provider.bmiResult[index]['color'])),
+                        title: provider.bmiResult[index]['title'],
+                        numeral: provider.bmiResult[index]['numeral'],
                         index: index,
                         bmi: provider.bmi,
                       );
@@ -107,7 +103,7 @@ class _BMIResultScreenState extends State<BMIResultScreen> {
                       provider.saveBMI(
                         BMIHistory(
                           result: provider.bmi.toStringAsFixed(2),
-                          txtResult: '${bmiResult[getIndex(provider.bmi)]['title']}',
+                          txtResult: '${provider.bmiResult[ConstantBMI.getIndex(provider.bmi)]['title']}',
                           time: DateFormat(Constants.formatDate).format(DateTime.now()),
                         ),
                       );
@@ -139,7 +135,7 @@ class _BMIResultScreenState extends State<BMIResultScreen> {
       padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 12),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(12),
-        color: getIndex(bmi) == index ? colorIc.withOpacity(0.2) : null,
+        color: ConstantBMI.getIndex(bmi) == index ? colorIc.withOpacity(0.2) : null,
       ),
       child: Row(
         children: [
@@ -149,53 +145,5 @@ class _BMIResultScreenState extends State<BMIResultScreen> {
         ],
       ),
     );
-  }
-
-  String getInterpretation(double bmi) {
-    if (bmi >= 40) {
-      return 'TXT_BMI_GRADE3'.tr();
-    } else if (bmi >= 35.0 && bmi <= 39.9) {
-      return 'TXT_BMI_GRADE2'.tr();
-    } else if (bmi >= 30.0 && bmi <= 34.9) {
-      return 'TXT_BMI_GRADE1'.tr();
-    } else if (bmi >= 25.0 && bmi <= 29.9) {
-      return 'TXT_BMI_OVERWEIGHT'.tr();
-    } else if (bmi >= 18.5 && bmi <= 24.9) {
-      return 'TXT_BMI_NORMAL'.tr();
-    } else if (bmi >= 17.0 && bmi <= 18.4) {
-      return 'TXT_BMI_MILDLY_UNDERWEIGHT'.tr();
-    } else if (bmi >= 16.0 && bmi <= 16.9) {
-      return 'TXT_BMI_UNDERWEIGHT'.tr();
-    } else {
-      return "TXT_BMI_SEVERELY_UNDERWEIGHT".tr();
-    }
-  }
-
-  int getIndex(double bmi) {
-    if (bmi >= 40) {
-      return 7;
-    } else if (bmi >= 35.0 && bmi <= 39.9) {
-      return 6;
-    } else if (bmi >= 30.0 && bmi <= 34.9) {
-      return 5;
-    } else if (bmi >= 25.0 && bmi <= 29.9) {
-      return 4;
-    } else if (bmi >= 18.5 && bmi <= 24.9) {
-      return 3;
-    } else if (bmi >= 17.0 && bmi <= 18.4) {
-      return 2;
-    } else if (bmi >= 16.0 && bmi <= 16.9) {
-      return 1;
-    } else {
-      return 0;
-    }
-  }
-
-  Future<void> initResult() async {
-    final String response = await rootBundle.loadString('assets/jsons/bmi_result.json');
-    final data = await json.decode(response);
-    setState(() {
-      bmiResult = data['bmi_result'];
-    });
   }
 }

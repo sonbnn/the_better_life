@@ -16,7 +16,7 @@ dependencies:
   core:
     git:
       url: http://gitlab.onechain.game/nghialq/core.git
-      ref: dev
+      ref: son
   dio: ^4.0.6
   provider: ^6.0.5
   fluttertoast: ^8.2.1
@@ -41,7 +41,7 @@ dependencies:
   #  google_mobile_ads: ^2.4.0
   path_provider: ^2.0.11
   flutter_native_timezone: ^2.0.0
-  permission_handler: ^10.2.0
+#  permission_handler: ^10.2.0
 
 dev_dependencies:
   flutter_test:

@@ -80,7 +80,6 @@ class _BeforeStartScreenState extends State<BeforeStartScreen> {
                       _buildButton(
                         onPressed: () {
                           if (providerDrink.currentIndexPage == 0) {
-                            Navigator.pop(context);
                             return;
                           } else {
                             providerDrink.setCurrentIndexPage(providerDrink.currentIndexPage - 1);

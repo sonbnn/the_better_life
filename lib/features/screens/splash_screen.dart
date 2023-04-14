@@ -23,13 +23,13 @@ class _SplashScreenState extends State<SplashScreen> {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback(
       (timeStamp) async {
-        initWater();
         initSize();
         // _initGoogleMobileAds();
         notificationService.initNotification();
         SoundController.initSound();
         final user = await SharedPrefsService.getUserInfo();
         if (user.recommendedMilli != null && user.recommendedMilli != 0) {
+          initWater();
           Future.delayed(const Duration(milliseconds: 1000), () {
             Navigator.pushNamedAndRemoveUntil(context, RoutingNameConstants.DashBoard, (route) => false);
           });

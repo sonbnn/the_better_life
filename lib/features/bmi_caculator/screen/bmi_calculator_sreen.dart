@@ -44,7 +44,7 @@ class _BMICalculatorScreenState extends State<BMICalculatorScreen> {
             onPressed: () {
               Navigator.pushNamed(context, RoutingNameConstants.BMIHistoryScreen);
             },
-            icon:  Icon(Icons.history, color: theme.primaryColor),
+            icon: Icon(Icons.history, color: theme.primaryColor),
           ),
         ],
       ),
@@ -124,7 +124,7 @@ class _BMICalculatorScreenState extends State<BMICalculatorScreen> {
                       });
                     },
                     child: Text(
-                      'Calculate BMI',
+                      'TXT_CALCULATE_BMI'.tr(),
                       style: theme.textTheme.button,
                     ),
                   ),

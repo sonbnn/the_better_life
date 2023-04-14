@@ -1,7 +1,9 @@
+import 'dart:convert';
 import 'dart:math';
 
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:the_better_life/configs/constants/constant_water.dart';
 import 'package:the_better_life/features/bmi_caculator/model/history_bmi.dart';
@@ -17,6 +19,7 @@ class UserProvider extends ChangeNotifier {
   static UserProvider of(BuildContext context) => Provider.of<UserProvider>(context, listen: false);
   double bmi = 0;
   List<BMIHistory> bmiHistory = [];
+  List bmiResult = [];
 
   void setWeight(double value) {
     user.weight = value;
@@ -50,11 +53,19 @@ class UserProvider extends ChangeNotifier {
 
   void plusAge(int number) {
     user.age ??= 20;
+    if (user.age! <= 1 && number == -1) {
+      SnackBarBuilder.showSnackBar(content: "TXT_ERR_MINUS".tr(), status: false);
+      return;
+    }
     setAge(user.age! + number);
   }
 
   void plusHeight(int number) {
     user.height ??= 150;
+    if (user.height! <= 1 && number == -1) {
+      SnackBarBuilder.showSnackBar(content: "TXT_ERR_MINUS".tr(), status: false);
+      return;
+    }
     setHeight(user.height! + number);
   }
 
@@ -117,13 +128,8 @@ class UserProvider extends ChangeNotifier {
     int timeSleepCal = int.parse(user.bedTime?.split(':').first ?? '');
     int timeSleepMini = int.parse(user.bedTime?.split(':').last ?? '');
     int timeWakeUpCal = int.parse(user.wakeUpTime?.split(':').first ?? '');
-    print(timeWakeUpCal);
-    print(timeSleepCal);
-    print(timeSleepCal - 1);
-    print('----');
 
     for (int i = timeWakeUpCal + 1; i < timeSleepCal; i++) {
-      print(i);
       await notificationService.showScheduledNotification(
         id: i,
         title: "TXT_NOTIFY_WATER_TITLE".tr(),
@@ -139,6 +145,12 @@ class UserProvider extends ChangeNotifier {
       hour: timeSleepMini == 0 ? ((timeSleepCal == 0) ? 23 : (timeSleepCal - 1)) : timeSleepCal,
       minutes: timeSleepMini == 0 ? 45 : timeSleepMini - 15,
     );
-    print('done');
+  }
+
+  Future<void> initBMI() async {
+    final String response = await rootBundle.loadString('assets/jsons/bmi_result.json');
+    final data = await json.decode(response);
+    bmiResult = data['bmi_result'];
+    notifyListeners();
   }
 }

@@ -39,12 +39,12 @@ class _SelectGenderAgeState extends State<SelectGenderAge> {
               ),
               const SizedBox(height: 24),
               ContainerShadowCommon(
-                size: Size((size.width / 2) - 30, (size.width / 2) - (ConstantSize.isSmallScreen ? 20  : 30)),
+                size: Size((size.width / 2) - 30, (size.width / 2) - (ConstantSize.isSmallScreen ? 20 : 30)),
                 padding: const EdgeInsets.all(12),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text('Your age', style: theme.textTheme.headline5),
+                    Text('TXT_YOUR_AGE'.tr(), style: theme.textTheme.headline5),
                     const SizedBox(height: 12),
                     Text('${provider.user.age?.toStringAsFixed(0) ?? 20}', style: theme.textTheme.headline1),
                     Row(
@@ -52,7 +52,7 @@ class _SelectGenderAgeState extends State<SelectGenderAge> {
                       children: [
                         ButtonShadowOuter(
                           size: const Size(56, 56),
-                          action: (){
+                          action: () {
                             provider.plusAge(-1);
                           },
                           child: Text('-', style: theme.textTheme.headline1),

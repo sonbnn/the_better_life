@@ -87,6 +87,7 @@
   "TXT_NOTIFY_SLEEP_DES": "15 minutes until your bedtime.",
   "TXT_HISTORY_WATER30": "History of drinking water in the last 30 days",
   "TXT_AMOUNT_WATER_DAY": "We calculate the amount of water you have to drink each day is",
+  "TXT_ERR_MINUS": "You can't let the number be less than 1!",
   "TXT_TIP_WATER": [
     "Always drink water before urinating and do not drink water immediately after urinating.",
     "Do not drink cold water immediately after eating/drinking hot drinks.",
