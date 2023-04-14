@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:the_better_life/configs/constants/constant_size.dart';
 import 'package:the_better_life/features/drink_water/providers/user/user_provider.dart';
+import 'package:the_better_life/helper/format.dart';
 import 'package:the_better_life/utils/snackbar_builder.dart';
 import 'package:the_better_life/widgets/buttons/button_shadow_out.dart';
 import 'package:the_better_life/widgets/container/container_shadow_common.dart';
@@ -21,6 +22,7 @@ class _TimeSleepBoxState extends State<TimeSleepBox> {
   @override
   Widget build(BuildContext context) {
     theme = Theme.of(context);
+    DateTime dateTimeNow = DateTime.now();
     return ContainerShadowCommon(
       padding: EdgeInsets.symmetric(horizontal: ConstantSize.spaceMargin, vertical: 12),
       margin: EdgeInsets.all(ConstantSize.spaceMargin),
@@ -42,11 +44,16 @@ class _TimeSleepBoxState extends State<TimeSleepBox> {
                     helpText: 'TXT_EDIT_BED_TIME'.tr(),
                   );
                   if (newTime == null) return;
-                  if ('${newTime.hour}:${newTime.minute}' == widget.provider.user.wakeUpTime) {
+                  if (Format.formatHour(
+                        DateTime(dateTimeNow.year, dateTimeNow.month, dateTimeNow.day, newTime.hour, newTime.minute),
+                      ) ==
+                      widget.provider.user.wakeUpTime) {
                     SnackBarBuilder.showSnackBar(content: 'TXT_SET_TIME_ERR'.tr(), status: false);
                     return;
                   }
-                  widget.provider.setTimeSleep(newTime);
+                  widget.provider.setTimeSleep(Format.formatHour(
+                    DateTime(dateTimeNow.year, dateTimeNow.month, dateTimeNow.day, newTime.hour, newTime.minute),
+                  ));
                   widget.provider.saveUserInfo();
                   widget.provider.setNotification(DateTime.now());
                 },
@@ -61,13 +68,20 @@ class _TimeSleepBoxState extends State<TimeSleepBox> {
                     helpText: 'TXT_EDIT_WAKEUP_TIME'.tr(),
                   );
                   if (newTime == null) return;
-                  if ('${newTime.hour}:${newTime.minute}' == widget.provider.user.bedTime) {
+                  if (Format.formatHour(
+                        DateTime(dateTimeNow.year, dateTimeNow.month, dateTimeNow.day, newTime.hour, newTime.minute),
+                      ) ==
+                      widget.provider.user.bedTime) {
                     SnackBarBuilder.showSnackBar(content: 'TXT_SET_TIME_ERR'.tr(), status: false);
                     return;
                   }
-                  widget.provider.setTimeWakeUp(newTime);
+                  widget.provider.setTimeWakeUp(
+                    Format.formatHour(
+                      DateTime(dateTimeNow.year, dateTimeNow.month, dateTimeNow.day, newTime.hour, newTime.minute),
+                    ),
+                  );
                   widget.provider.saveUserInfo();
-                  widget.provider.setNotification(DateTime.now());
+                  widget.provider.setNotification(dateTimeNow);
                 },
                 iconData: Icons.access_alarms_sharp,
               )

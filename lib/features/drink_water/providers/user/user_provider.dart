@@ -28,13 +28,13 @@ class UserProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void setTimeWakeUp(TimeOfDay newTime) {
-    user.wakeUpTime = '${newTime.hour}:${newTime.minute}';
+  void setTimeWakeUp(String newTime) {
+    user.wakeUpTime = newTime;
     notifyListeners();
   }
 
-  void setTimeSleep(TimeOfDay newTime) {
-    user.bedTime = '${newTime.hour}:${newTime.minute}';
+  void setTimeSleep(String newTime) {
+    user.bedTime = newTime;
     notifyListeners();
   }
 
@@ -117,12 +117,12 @@ class UserProvider extends ChangeNotifier {
     int timeSleepCal = int.parse(user.bedTime?.split(':').first ?? '');
     int timeSleepMini = int.parse(user.bedTime?.split(':').last ?? '');
     int timeWakeUpCal = int.parse(user.wakeUpTime?.split(':').first ?? '');
-      print(timeWakeUpCal);
-      print(timeSleepCal);
-      print(timeSleepCal - 1);
-      print('----');
+    print(timeWakeUpCal);
+    print(timeSleepCal);
+    print(timeSleepCal - 1);
+    print('----');
 
-    for (int i = timeWakeUpCal + 1; i < timeSleepCal ; i++) {
+    for (int i = timeWakeUpCal + 1; i < timeSleepCal; i++) {
       print(i);
       await notificationService.showScheduledNotification(
         id: i,
@@ -136,7 +136,7 @@ class UserProvider extends ChangeNotifier {
       id: 0000100000110,
       title: "TXT_NOTIFY_SLEEP".tr(),
       body: "TXT_NOTIFY_SLEEP_DES".tr(),
-      hour: timeSleepMini == 0 ?( (timeSleepCal == 0) ? 23 : (timeSleepCal - 1) ):timeSleepCal,
+      hour: timeSleepMini == 0 ? ((timeSleepCal == 0) ? 23 : (timeSleepCal - 1)) : timeSleepCal,
       minutes: timeSleepMini == 0 ? 45 : timeSleepMini - 15,
     );
     print('done');

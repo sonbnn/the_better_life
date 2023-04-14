@@ -33,8 +33,8 @@ class _LetGoScreenState extends State<LetGoScreen> {
           return Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text('so luong nuoc ban phai uong hang ngay la'),
-              Text('${providerUser.user.recommendedMilli?.toStringAsFixed(0)} MILLILITRE'),
+              Text('TXT_AMOUNT_WATER_DAY'.tr(), style: textTheme.headline6),
+              Text('${providerUser.user.recommendedMilli?.toStringAsFixed(0)} ml', style: textTheme.headline6),
               Padding(
                 padding: const EdgeInsets.all(24.0),
                 child: ButtonShadowOuter(
