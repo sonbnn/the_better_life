@@ -84,7 +84,17 @@
   "TXT_NOTIFY_WATER_TITLE": "Friends, it's time to drink water!",
   "TXT_NOTIFY_WATER_DES": "After drinking water, please go to the app to add the amount of water you drank!",
   "TXT_NOTIFY_SLEEP": "Friend, it's almost bedtime!",
-  "TXT_NOTIFY_SLEEP_DES": "15 minutes until your bedtime."
+  "TXT_NOTIFY_SLEEP_DES": "15 minutes until your bedtime.",
+  "TXT_HISTORY_WATER30": "History of drinking water in the last 30 days",
+  "TXT_TIP_WATER": [
+    "Always drink water before urinating and do not drink water immediately after urinating.",
+    "Do not drink cold water immediately after eating/drinking hot drinks.",
+    "Drinking water in a sitting position is better than standing or running.",
+    "You can replace drinking water by eating water-rich foods like cucumber, zucchini, watermelon...",
+    "Do not drink water immediately after eating.",
+    "Please sip a glass of water before eating.",
+    "Drink a glass of water slowly with a few sips."
+  ]
 }
 
 

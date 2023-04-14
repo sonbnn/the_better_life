@@ -27,6 +27,7 @@ class ButtonShadowOuter extends StatefulWidget {
 
 class _ButtonShadowOuterState extends State<ButtonShadowOuter> {
   bool _condition = true;
+  bool isButtonPressed = false;
 
   @override
   Widget build(BuildContext context) {
@@ -40,6 +41,7 @@ class _ButtonShadowOuterState extends State<ButtonShadowOuter> {
         margin: widget.margin,
         color: widget.color,
         radius: widget.radius ?? 12,
+        isButtonClicked: isButtonPressed,
         child: widget.child,
       ),
     );
@@ -48,7 +50,13 @@ class _ButtonShadowOuterState extends State<ButtonShadowOuter> {
   void checkCondition() async {
     if (_condition) {
       setState(() => _condition = false);
-      await widget.action();
+      isButtonPressed = true;
+      Future.delayed(const Duration(milliseconds: 100), () async {
+        setState(() {
+          isButtonPressed = false;
+        });
+        await widget.action();
+      });
       setState(() => _condition = true);
     }
   }

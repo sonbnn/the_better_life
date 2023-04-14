@@ -1,4 +1,10 @@
+import 'dart:convert';
+import 'dart:math';
+
+import 'package:core/core.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:the_better_life/configs/constants/constant_water.dart';
 import 'package:the_better_life/features/drink_water/model/watter_history.dart';
@@ -18,6 +24,11 @@ class DrinkProvider extends ChangeNotifier {
   bool isHideBottomNavbar = false;
 
   double progress = 0;
+
+  List tipDrink = [];
+  final NavigationService navigationService = injector.get<NavigationService>();
+
+  String tipTxt = '';
 
   static DrinkProvider of(BuildContext context) => Provider.of<DrinkProvider>(context, listen: false);
 
@@ -52,7 +63,7 @@ class DrinkProvider extends ChangeNotifier {
 
   void addHistoryDay({required String timeRef, required double amount}) async {
     listHistoryDay.insert(0, WaterHistoryDay(time: timeRef, amount: amount));
-    if(listHistoryDay.length >= 30){
+    if (listHistoryDay.length >= 30) {
       listHistoryDay.removeLast();
     }
     SharedPrefsService.saveDayHistory(listHistoryDay);
@@ -112,6 +123,7 @@ class DrinkProvider extends ChangeNotifier {
     getHistoryDay();
     getHistoryMonth();
     getCurrentDay();
+    getTip();
   }
 
   void resetDataDay() async {
@@ -120,6 +132,20 @@ class DrinkProvider extends ChangeNotifier {
     setCurrentDay();
     SharedPrefsService.saveDayHistory([]);
     getHistoryDay();
+    notifyListeners();
+  }
+
+  Future<void> getTip() async {
+    final String response = await rootBundle
+        .loadString('assets/jsons/translations/${navigationService.getCurrentContext.locale.languageCode}.json');
+    final data = await json.decode(response);
+    tipDrink = data["TXT_TIP_WATER"];
+    tipTxt = tipDrink[Random().nextInt(tipDrink.length)];
+    notifyListeners();
+  }
+
+  void randomTip() {
+    tipTxt = tipDrink[Random().nextInt(tipDrink.length)];
     notifyListeners();
   }
 }

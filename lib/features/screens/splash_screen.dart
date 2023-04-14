@@ -16,7 +16,7 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-  final NotificationService notificationService= NotificationService() ;
+  final NotificationService notificationService = NotificationService();
 
   @override
   void initState() {
@@ -61,7 +61,7 @@ class _SplashScreenState extends State<SplashScreen> {
     if (ConstantSize.screenWidth < 380) {
       ConstantSize.spaceMargin = 10;
     } else {
-      ConstantSize.spaceMargin = 20;
+      ConstantSize.spaceMargin = 24;
     }
   }
 

@@ -5,7 +5,6 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:lottie/lottie.dart';
-import 'package:the_better_life/configs/constants/constants.dart';
 import 'package:the_better_life/configs/router/routing_name.dart';
 import 'package:the_better_life/features/drink_water/providers/drink/drink_provider.dart';
 import 'package:the_better_life/features/drink_water/providers/user/user_provider.dart';
@@ -289,7 +288,7 @@ class _BoxMainWaterState extends State<BoxMainWater> {
           ),
         ],
       );
-    }else{
+    } else {
       return null;
     }
   }

@@ -1,12 +1,12 @@
+import 'package:core/core.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:the_better_life/configs/constants/constant_size.dart';
 import 'package:the_better_life/configs/constants/constants.dart';
 import 'package:the_better_life/configs/router/routing_name.dart';
-import 'package:the_better_life/features/drink_water/providers/user/user_provider.dart';
 import 'package:the_better_life/features/screens/setting/widget/item_setting.dart';
-import 'package:the_better_life/helper/notification.dart';
 import 'package:the_better_life/widgets/common/base_appbar.dart';
+import 'package:the_better_life/widgets/container/container_shadow_common.dart';
 
 class SettingScreen extends StatefulWidget {
   const SettingScreen({Key? key}) : super(key: key);
@@ -38,19 +38,19 @@ class _SettingScreenState extends State<SettingScreen> {
                 Navigator.pushNamed(context, RoutingNameConstants.ChooseLanguageScreen);
               },
             ),
-            ItemSetting(
-              icName: 'ic_setting',
-              title: 'TXT_APP_VERSION'.tr(),
-              onTap: () {},
-              itemRight: Text(Constants.appVersion, style: theme.textTheme.bodyText1),
-            ),
-            ItemSetting(
-              icName: 'ic_setting',
-              title: 'TXT_APP_VERSION'.tr(),
-              onTap: () {
-                Provider.of<UserProvider>(context, listen: false).setNotification(DateTime.now());
-              },
-              itemRight: Text(Constants.appVersion, style: theme.textTheme.bodyText1),
+            ContainerShadowCommon(
+              size: const Size(double.infinity, 66),
+              radius: 12,
+              margin: EdgeInsets.symmetric(horizontal: ConstantSize.spaceMargin, vertical: 6),
+              padding: const EdgeInsets.symmetric(horizontal: 12),
+              child: Row(
+                children: [
+                  CommonImage(url: 'assets/icons/ic_setting.svg', color: theme.dividerColor, width: 36),
+                  const SizedBox(width: 12),
+                  Expanded(child: Text('TXT_APP_VERSION'.tr(), style: theme.textTheme.bodyText1)),
+                  Text(Constants.appVersion, style: theme.textTheme.bodyText1),
+                ],
+              ),
             ),
           ],
         ),
