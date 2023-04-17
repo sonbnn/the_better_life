@@ -11,6 +11,7 @@ import 'package:the_better_life/widgets/container/container_shadow_common.dart';
 
 class DashBoard extends StatefulWidget {
   final String? payload;
+
   const DashBoard({Key? key, this.payload}) : super(key: key);
 
   @override
@@ -21,7 +22,13 @@ class _DashBoardState extends State<DashBoard> {
   final PageStorageBucket bucket = PageStorageBucket();
   final GlobalKey<ScaffoldState> _key = GlobalKey();
   late ThemeData theme;
-  List<Widget> screens = [const WaterScreen(), const GoBedScreen(), const BMICalculatorScreen(), const SettingScreen()];
+  List<Widget> screens = [
+    const WaterScreen(),
+    const GoBedScreen(),
+    const BMICalculatorScreen(),
+    const SettingScreen(),
+  ];
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -40,7 +47,7 @@ class _DashBoardState extends State<DashBoard> {
               Positioned(
                 bottom: MediaQuery.of(context).padding.bottom,
                 child: ContainerShadowCommon(
-                  size: Size(size.width - (ConstantSize.spaceMargin * 2), ConstantSize.isSmallScreen ? 56 : 70 ),
+                  size: Size(size.width - (ConstantSize.spaceMargin * 2), ConstantSize.isSmallScreen ? 56 : 70),
                   color: Theme.of(context).backgroundColor,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -57,7 +64,6 @@ class _DashBoardState extends State<DashBoard> {
           );
         },
       ),
-
     );
   }
 
@@ -73,10 +79,9 @@ class _DashBoardState extends State<DashBoard> {
           url: 'assets/icons/ic_$icon.svg',
           width: 30,
           height: 30,
-          color: PageProvider.of(context).currentIndexPage == index ?theme.primaryColor :  theme.disabledColor,
+          color: PageProvider.of(context).currentIndexPage == index ? theme.primaryColor : theme.disabledColor,
         ),
       ),
     );
   }
-
 }

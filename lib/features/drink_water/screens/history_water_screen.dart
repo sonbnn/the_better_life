@@ -86,7 +86,7 @@ class _HistoryWaterScreenState extends State<HistoryWaterScreen> {
                                 shrinkWrap: true,
                                 itemCount: provider.listHistoryMonth.length,
                                 scrollDirection: Axis.vertical,
-                                padding: const EdgeInsets.all(24),
+                                padding: const EdgeInsets.symmetric(vertical: 24),
                                 itemBuilder: (context, index) {
                                   return _buildItem(
                                     result: '${provider.listHistoryMonth[index].result}',
@@ -125,23 +125,26 @@ class _HistoryWaterScreenState extends State<HistoryWaterScreen> {
   }
 
   Widget _buildItem({required String result, required String time}) {
-    return Row(
-      children: [
-        const Icon(Icons.water_drop_outlined),
-        const SizedBox(width: 12),
-        Expanded(
-          child: Text(
-            '${result}ml',
-            style: textTheme.bodyText1,
-            maxLines: 1,
-            overflow: TextOverflow.ellipsis,
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 12),
+      child: Row(
+        children: [
+          const Icon(Icons.water_drop_outlined),
+          const SizedBox(width: 12),
+          Expanded(
+            child: Text(
+              '${result}ml',
+              style: textTheme.bodyText1,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+            ),
           ),
-        ),
-        Text(
-          time,
-          style: textTheme.bodyText1,
-        ),
-      ],
+          Text(
+            time,
+            style: textTheme.bodyText1,
+          ),
+        ],
+      ),
     );
   }
 }

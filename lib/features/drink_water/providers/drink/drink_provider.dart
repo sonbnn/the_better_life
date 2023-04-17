@@ -128,7 +128,7 @@ class DrinkProvider extends ChangeNotifier {
 
   void resetDataDay() async {
     SharedPrefsService.setAmountDrinkToday(0);
-    amountDrinkToday = await SharedPrefsService.getAmountDrinkToday();
+    amountDrinkToday = 0;
     setCurrentDay();
     SharedPrefsService.saveDayHistory([]);
     getHistoryDay();

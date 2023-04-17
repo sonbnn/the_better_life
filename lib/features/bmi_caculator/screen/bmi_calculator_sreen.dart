@@ -28,6 +28,7 @@ class _BMICalculatorScreenState extends State<BMICalculatorScreen> {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       Provider.of<UserProvider>(context, listen: false).getHistoryBMI();
+      Provider.of<UserProvider>(context, listen: false).initBMI();
     });
   }
 
